@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261113_4">
+  <link rel="stylesheet" href="css/style.css?v=20261113_6">
 
   <!-- Critical Centering, Gateway Lock & Responsive Rules -->
   <style>
@@ -385,8 +385,12 @@
         <span class="disc-hole"></span>
       </div>
       <div class="music-notes-fly" id="music-notes-fly">
-        <span class="fly-note n1">♪</span>
-        <span class="fly-note n2">♫</span>
+        <span class="fly-note n1">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        </span>
+        <span class="fly-note n2">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 3v9.28a4.39 4.39 0 0 0-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>
+        </span>
       </div>
     </div>
     <svg class="icon-music-off" id="icon-music-off" viewBox="0 0 24 24" width="18" height="18" style="display: none;">
@@ -411,9 +415,27 @@
         <div class="hero-card-inner reveal-fade is-visible">
           
           <div class="hero-top-badge">
-            <span class="leaf-left">🌿</span>
+            <span class="leaf-left">
+              <svg class="badge-leaf-svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22C12 22 20 18 20 10C20 4 14 2 12 2C10 2 4 4 4 10C4 18 12 22 12 22Z"/>
+                <path d="M12 2V22"/>
+                <path d="M12 7L17 10"/>
+                <path d="M12 12L18 14"/>
+                <path d="M12 7L7 10"/>
+                <path d="M12 12L6 14"/>
+              </svg>
+            </span>
             <span class="eyebrow-text">Walimatul 'Ursy & Walimatul Khitan</span>
-            <span class="leaf-right">🌿</span>
+            <span class="leaf-right">
+              <svg class="badge-leaf-svg flip-h" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22C12 22 20 18 20 10C20 4 14 2 12 2C10 2 4 4 4 10C4 18 12 22 12 22Z"/>
+                <path d="M12 2V22"/>
+                <path d="M12 7L17 10"/>
+                <path d="M12 12L18 14"/>
+                <path d="M12 7L7 10"/>
+                <path d="M12 12L6 14"/>
+              </svg>
+            </span>
           </div>
 
           <!-- Arch Photo Frame with Real Couple Photo -->
@@ -435,9 +457,17 @@
           </div>
 
           <p class="hero-date-location">
-            <span class="dot-icon">✦</span>
+            <span class="dot-icon">
+              <svg class="sparkle-icon" viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true">
+                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+              </svg>
+            </span>
             <span>Minggu Malam Senin, 06 Desember 2026</span>
-            <span class="dot-icon">✦</span>
+            <span class="dot-icon">
+              <svg class="sparkle-icon" viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true">
+                <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+              </svg>
+            </span>
           </p>
 
           <!-- Guest Personalized Card -->
@@ -520,7 +550,7 @@
             <div class="mempelai-cards-wrap">
               
               <!-- Mempelai Wanita (Siti Ami) -->
-              <div class="person-card reveal-left">
+              <div class="person-card bride-card reveal-up">
                 <div class="avatar-ring-frame">
                   <div class="avatar-glow"></div>
                   <img src="assets/bride_ami.png" alt="Siti Ami" class="profile-avatar-img">
@@ -541,7 +571,7 @@
               </div>
 
               <!-- Mempelai Pria (Abdul Azis) -->
-              <div class="person-card reveal-right">
+              <div class="person-card groom-card reveal-up">
                 <div class="avatar-ring-frame">
                   <div class="avatar-glow"></div>
                   <img src="assets/groom_azis.png" alt="Abdul Azis" class="profile-avatar-img">
@@ -571,7 +601,11 @@
 
           <div class="sec-inner reveal">
             <div class="khitan-islamic-badge">
-              <span class="star-crescent">☪</span>
+              <span class="star-crescent">
+                <svg class="star-crescent-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M9.5 2C5.36 2 2 5.36 2 9.5c0 3.7 2.68 6.77 6.22 7.37-.22-.6-.35-1.24-.35-1.91 0-3.31 2.69-6 6-6 .67 0 1.31.13 1.91.35C15.17 5.76 12.58 3.5 9.5 2zm7.5 7l.95 2.05 2.25.18-1.72 1.47.53 2.21-1.99-1.22-1.99 1.22.53-2.21-1.72-1.47 2.25-.18L17 9z"/>
+                </svg>
+              </span>
               <span>Tasyakuran Walimatul Khitan</span>
             </div>
             
@@ -634,7 +668,7 @@
             <div class="schedule-cards-grid">
               
               <!-- Akad Nikah -->
-              <div class="schedule-box reveal-left">
+              <div class="schedule-box sched-akad reveal-left">
                 <div class="sched-icon-bubble">
                   <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                 </div>
@@ -644,7 +678,7 @@
               </div>
 
               <!-- Resepsi & Khitanan -->
-              <div class="schedule-box reveal-right">
+              <div class="schedule-box sched-resepsi reveal-right">
                 <div class="sched-icon-bubble highlight">
                   <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M18 17h2v.5h-1v1h1v.5h-2v1h3v-4h-3zm1-9h1V4h-2v1h1zm-1 3h1.8L18 13.1v.9h3v-1h-1.8l1.8-2.1V10h-3zm-6-7c-1.1 0-2 .9-2 2v2H8V3c0-1.1-.9-2-2-2S4 1.9 4 3v2H2v14c0 1.1.9 2 2 2h8v-2H4V9h14v2h2V5c0-1.1-.9-2-2-2h-2V3c0-1.1-.9-2-2-2zM6 3c0-.55.45-1 1-1s1 .45 1 1v2H6V3zm8 0c0-.55.45-1 1-1s1 .45 1 1v2h-2V3z"/></svg>
                 </div>
@@ -657,7 +691,11 @@
 
             <!-- Venue Location Card -->
             <div class="venue-location-card reveal-up">
-              <div class="venue-icon-pin">📍</div>
+              <div class="venue-icon-pin">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+              </div>
               <h4 class="venue-title">Bertempat di Kediaman Mempelai Wanita :</h4>
               <p class="venue-address-full">
                 <strong>Kp. Buah Gede RT. 009 RW. 005</strong><br>
@@ -764,53 +802,81 @@
               
               <div class="grid-item" data-full="assets/gallery/moment_full_1.jpg" data-index="0" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_1.jpg" alt="Our Moment 1" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_2.jpg" data-index="1" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_2.jpg" alt="Our Moment 2" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_3.jpg" data-index="2" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_3.jpg" alt="Our Moment 3" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_4.jpg" data-index="3" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_4.jpg" alt="Our Moment 4" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_5.jpg" data-index="4" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_5.jpg" alt="Our Moment 5" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_6.jpg" data-index="5" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_6.jpg" alt="Our Moment 6" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_7.jpg" data-index="6" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_7.jpg" alt="Our Moment 7" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_8.jpg" data-index="7" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_8.jpg" alt="Our Moment 8" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
               <div class="grid-item" data-full="assets/gallery/moment_full_9.jpg" data-index="8" title="Klik untuk perbesar">
                 <img src="assets/gallery/moment_9.jpg" alt="Our Moment 9" loading="lazy">
-                <div class="item-zoom-icon">🔍</div>
+                <div class="item-zoom-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/></svg>
+                </div>
               </div>
 
             </div>
 
             <p class="gallery-hint-text">
-              <span>✦</span> Ketuk foto untuk melihat dalam resolusi penuh <span>✦</span>
+              <span class="hint-star">
+                <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+                </svg>
+              </span>
+              <span>Ketuk foto untuk melihat dalam resolusi penuh</span>
+              <span class="hint-star">
+                <svg viewBox="0 0 24 24" width="10" height="10" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/>
+                </svg>
+              </span>
             </p>
 
             <div class="flower-anchor">
@@ -839,37 +905,63 @@
             <!-- Bank Accounts Cards -->
             <div class="gift-cards-list">
               
-              <!-- Card 1: Mempelai Wanita -->
-              <div class="bank-card-item reveal-left">
+              <!-- Card 1: Bank BJB -->
+              <div class="bank-card-item card-bjb reveal-left">
                 <div class="bank-header">
-                  <span class="bank-logo-chip">🏧 TRANSFER BANK</span>
-                  <span class="bank-name-label">BANK BCA</span>
+                  <div class="bank-chip-wrap">
+                    <svg class="emv-chip-svg" viewBox="0 0 32 24" width="28" height="21" fill="none" aria-hidden="true">
+                      <rect x="0.5" y="0.5" width="31" height="23" rx="3.5" fill="#f4d06f" stroke="#c99732"/>
+                      <line x1="0.5" y1="8" x2="10" y2="8" stroke="#a47820"/>
+                      <line x1="0.5" y1="16" x2="10" y2="16" stroke="#a47820"/>
+                      <line x1="22" y1="8" x2="31.5" y2="8" stroke="#a47820"/>
+                      <line x1="22" y1="16" x2="31.5" y2="16" stroke="#a47820"/>
+                      <line x1="16" y1="0.5" x2="16" y2="23.5" stroke="#a47820"/>
+                      <rect x="10" y="6" width="12" height="12" rx="2" stroke="#a47820" fill="#f7e199"/>
+                    </svg>
+                    <span class="bank-type-pill">TRANSFER BANK</span>
+                  </div>
+                  <div class="bank-badge-bjb">
+                    <span class="bank-bjb-text">bank <strong>bjb</strong></span>
+                  </div>
                 </div>
-                <div class="bank-acc-number" id="acc-num-1">7310567890</div>
-                <div class="bank-acc-holder">a.n. Siti Ami</div>
-                <button class="btn-copy-acc" data-target="acc-num-1" data-holder="Siti Ami">
+                <div class="bank-acc-label">Nomor Rekening:</div>
+                <div class="bank-acc-number" id="acc-num-1">0157457578100</div>
+                <div class="bank-acc-holder">Atas Nama : <strong>Siti Ami</strong></div>
+                <button class="btn-copy-acc" data-target="acc-num-1" data-holder="No. Rekening Bank BJB">
                   <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                   <span>Salin No. Rekening</span>
                 </button>
               </div>
 
-              <!-- Card 2: Mempelai Pria -->
-              <div class="bank-card-item reveal-right">
+              <!-- Card 2: DANA -->
+              <div class="bank-card-item card-dana reveal-right">
                 <div class="bank-header">
-                  <span class="bank-logo-chip">🏧 TRANSFER BANK</span>
-                  <span class="bank-name-label">BANK BRI</span>
+                  <div class="bank-chip-wrap">
+                    <svg class="wallet-icon-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                      <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                    </svg>
+                    <span class="bank-type-pill">DOMPET DIGITAL</span>
+                  </div>
+                  <div class="bank-badge-dana">
+                    <span class="bank-dana-text">DANA</span>
+                  </div>
                 </div>
-                <div class="bank-acc-number" id="acc-num-2">012301098765502</div>
-                <div class="bank-acc-holder">a.n. Abdul Azis</div>
-                <button class="btn-copy-acc" data-target="acc-num-2" data-holder="Abdul Azis">
+                <div class="bank-acc-label">Nomor Akun DANA:</div>
+                <div class="bank-acc-number" id="acc-num-2">083863209991</div>
+                <div class="bank-acc-holder">Atas Nama : <strong>Siti Ami</strong></div>
+                <button class="btn-copy-acc" data-target="acc-num-2" data-holder="Nomor DANA">
                   <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                  <span>Salin No. Rekening</span>
+                  <span>Salin Nomor DANA</span>
                 </button>
               </div>
 
               <!-- Card 3: Kirim Kado Fisik -->
               <div class="physical-gift-card reveal-up">
-                <div class="gift-icon-bubble">🎁</div>
+                <div class="gift-icon-bubble">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                    <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76V14h2V8.76L15.38 12 17 10.83 14.92 8H20v6z"/>
+                  </svg>
+                </div>
                 <h4 class="gift-card-title">Kirim Kado Fisik</h4>
                 <p class="gift-address-text" id="gift-address">
                   Kediaman Mempelai Wanita, Kp. Buah Gede RT. 009 RW. 005 Ds. Sentul Kec. Kragilan Kab. Serang - Banten (Kode Pos: 42184)
@@ -918,15 +1010,24 @@
                 <div class="attendance-options">
                   <label class="att-pill">
                     <input type="radio" name="attendance" value="Hadir" checked>
-                    <span class="att-tag">🌿 Hadir</span>
+                    <span class="att-tag">
+                      <svg class="att-svg icon-hadir" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                      <span>Hadir</span>
+                    </span>
                   </label>
                   <label class="att-pill">
                     <input type="radio" name="attendance" value="Tidak Hadir">
-                    <span class="att-tag">🍂 Tidak Hadir</span>
+                    <span class="att-tag">
+                      <svg class="att-svg icon-tidakhadir" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+                      <span>Tidak Hadir</span>
+                    </span>
                   </label>
                   <label class="att-pill">
                     <input type="radio" name="attendance" value="Ragu-ragu">
-                    <span class="att-tag">⏳ Masih Ragu</span>
+                    <span class="att-tag">
+                      <svg class="att-svg icon-ragu" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                      <span>Masih Ragu</span>
+                    </span>
                   </label>
                 </div>
               </div>
@@ -1022,7 +1123,10 @@
 
             <!-- Music Credits & Copyright -->
             <div class="footer-bottom-credit">
-              <p class="music-credit-text">🎵 Background Music: Westlife - Beautiful in White</p>
+              <p class="music-credit-text">
+                <svg class="credit-music-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                <span>Background Music: Westlife - Beautiful in White</span>
+              </p>
               <p class="copyright-text">The Wedding of Siti Ami & Abdul Azis • 2026</p>
             </div>
 
@@ -1096,11 +1200,15 @@
   <!-- FLOATING TOAST NOTIFICATION                             -->
   <!-- ======================================================== -->
   <div class="toast-notification" id="toast-notify" role="alert" aria-live="assertive">
-    <span class="toast-icon">✓</span>
+    <span class="toast-icon">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </span>
     <span class="toast-msg" id="toast-msg">Teks berhasil disalin!</span>
   </div>
 
   <!-- JavaScript Engine -->
-  <script src="js/app.js?v=20261113"></script>
+  <script src="js/app.js?v=20261113_6"></script>
 </body>
 </html>

@@ -160,8 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         initScrollReveals();
         updateScrollSpy();
-      }, 60);
-    }, withScroll ? 360 : 0);
+      }, 80);
+    }, withScroll ? 420 : 0);
   }
 
   if (btnOpenInvitation) {
@@ -286,6 +286,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!elDays || !elHours || !elMinutes || !elSeconds) return;
 
+    let prevValues = { d: '', h: '', m: '', s: '' };
+
+    function updateBox(el, newVal, oldVal) {
+      if (newVal !== oldVal) {
+        el.textContent = newVal;
+        if (oldVal !== '') {
+          el.classList.remove('num-tick');
+          void el.offsetWidth; // trigger reflow for smooth animation restart
+          el.classList.add('num-tick');
+        }
+      }
+    }
+
     function update() {
       const now = new Date().getTime();
       const diff = targetDate - now;
@@ -298,15 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      const d = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const h = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      const m = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const s = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
 
-      elDays.textContent = String(d).padStart(2, '0');
-      elHours.textContent = String(h).padStart(2, '0');
-      elMinutes.textContent = String(m).padStart(2, '0');
-      elSeconds.textContent = String(s).padStart(2, '0');
+      updateBox(elDays, d, prevValues.d);
+      updateBox(elHours, h, prevValues.h);
+      updateBox(elMinutes, m, prevValues.m);
+      updateBox(elSeconds, s, prevValues.s);
+
+      prevValues = { d, h, m, s };
     }
 
     update();
@@ -379,8 +394,20 @@ document.addEventListener('DOMContentLoaded', () => {
       currentLightboxIndex = index;
       const item = galleryItems[currentLightboxIndex];
       const fullSrc = item.getAttribute('data-full');
-      lightboxImg.src = fullSrc;
-      lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${galleryItems.length}`;
+
+      if (lightboxImg) {
+        lightboxImg.classList.add('fade-transition');
+        const tempImg = new Image();
+        tempImg.onload = () => {
+          lightboxImg.src = fullSrc;
+          lightboxImg.classList.remove('fade-transition');
+        };
+        tempImg.src = fullSrc;
+      }
+
+      if (lightboxCounter) {
+        lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${galleryItems.length}`;
+      }
       galleryLightbox.classList.add('active');
     }
 

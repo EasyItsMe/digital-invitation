@@ -273,8 +273,9 @@ button, a {
 .fly-note {
   position: absolute;
   color: var(--accent-soft-gold);
-  font-size: 13px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
 }
 
@@ -370,18 +371,19 @@ body.invitation-opened #sec-cover {
 
 .cover-closing {
   opacity: 0 !important;
-  transform: translateY(-40px) scale(0.95) !important;
-  transition: opacity 0.4s ease, transform 0.4s ease !important;
+  transform: translateY(-35px) scale(1.03) !important;
+  filter: blur(6px) !important;
+  transition: opacity 0.42s ease, transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), filter 0.42s ease !important;
   pointer-events: none !important;
 }
 
 body.invitation-opened .invitation-body {
   display: block !important;
-  animation: fadeInContent 0.7s ease forwards;
+  animation: fadeInContent 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 @keyframes fadeInContent {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -456,11 +458,58 @@ body.invitation-opened .invitation-body {
   z-index: 5;
 }
 
+/* Tiered Entrance Cascade for Opening Screen */
+.hero-card-inner.is-visible .hero-top-badge {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards;
+}
+.hero-card-inner.is-visible .hero-arch-wrap {
+  animation: heroZoomIn 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s backwards;
+}
+.hero-card-inner.is-visible .hero-title-script {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s backwards;
+}
+.hero-card-inner.is-visible .hero-full-names {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s backwards;
+}
+.hero-card-inner.is-visible .khitan-announcement-pill {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s backwards;
+}
+.hero-card-inner.is-visible .hero-date-location {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s backwards;
+}
+.hero-card-inner.is-visible .hero-guest-box {
+  animation: heroFadeSlideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s backwards;
+}
+.hero-card-inner.is-visible .btn-open-envelope {
+  animation: heroZoomIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.95s backwards, pulse-open-btn 2.2s infinite 1.7s;
+}
+
+@keyframes heroFadeSlideUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroZoomIn {
+  0% { opacity: 0; transform: scale(0.9) translateY(14px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .hero-top-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
+}
+
+.badge-leaf-svg {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--primary-blue);
+  transition: transform 0.3s ease;
+}
+
+.badge-leaf-svg.flip-h {
+  transform: scaleX(-1);
 }
 
 .eyebrow-text {
@@ -507,6 +556,12 @@ body.invitation-opened .invitation-body {
   object-fit: cover;
   object-position: center 20%;
   display: block;
+  animation: slowZoomHero 9s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoomHero {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.07); }
 }
 
 .hero-title-script {
@@ -566,7 +621,14 @@ body.invitation-opened .invitation-body {
 
 .dot-icon {
   color: var(--accent-gold);
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sparkle-icon {
+  display: inline-block;
+  color: var(--accent-gold);
 }
 
 /* Guest Box */
@@ -621,12 +683,32 @@ body.invitation-opened .invitation-body {
   box-shadow: 0 4px 16px rgba(44, 74, 92, 0.35);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
   animation: pulse-open-btn 2.2s infinite;
+}
+
+.btn-open-envelope::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: rotate(25deg);
+  animation: btnShimmerSweep 3s ease-in-out infinite;
+}
+
+@keyframes btnShimmerSweep {
+  0% { left: -60%; }
+  35% { left: 140%; }
+  100% { left: 140%; }
 }
 
 @keyframes pulse-open-btn {
   0% { transform: scale(1); box-shadow: 0 4px 16px rgba(44, 74, 92, 0.35); }
-  50% { transform: scale(1.04); box-shadow: 0 6px 22px rgba(44, 74, 92, 0.45); }
+  50% { transform: scale(1.05); box-shadow: 0 8px 24px rgba(44, 74, 92, 0.52); }
   100% { transform: scale(1); box-shadow: 0 4px 16px rgba(44, 74, 92, 0.35); }
 }
 
@@ -649,6 +731,14 @@ body.invitation-opened .invitation-body {
 .hydrangea-img {
   width: 100%;
   height: auto;
+  display: block;
+  animation: floatFlowerUpDown 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes floatFlowerUpDown {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-7px); }
+}
   display: block;
   filter: drop-shadow(0 3px 8px rgba(71, 112, 135, 0.12));
 }
@@ -814,6 +904,19 @@ body.invitation-opened .invitation-body {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Staggered entrance for couple profile cards */
+.person-card.bride-card {
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.12s, box-shadow 0.25s ease;
+}
+
+.mempelai-cards-wrap .love-divider {
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.28s;
+}
+
+.person-card.groom-card {
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.44s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.44s, box-shadow 0.25s ease;
+}
+
 .person-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
@@ -833,6 +936,12 @@ body.invitation-opened .invitation-body {
   background: linear-gradient(135deg, var(--accent-soft-gold), var(--primary-light));
   filter: blur(6px);
   opacity: 0.5;
+  animation: glowPulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.35; transform: scale(0.96); }
+  100% { opacity: 0.75; transform: scale(1.08); }
 }
 
 .profile-avatar-img {
@@ -844,6 +953,11 @@ body.invitation-opened .invitation-body {
   position: relative;
   z-index: 2;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.person-card:hover .profile-avatar-img {
+  transform: scale(1.08);
 }
 
 .person-full-name {
@@ -927,6 +1041,17 @@ body.invitation-opened .invitation-body {
   font-size: 11px;
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+.star-crescent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star-crescent-svg {
+  color: var(--accent-gold);
+  display: inline-block;
 }
 
 .khitan-card-highlight {
@@ -1022,10 +1147,18 @@ body.invitation-opened .invitation-body {
   border-radius: var(--radius-card);
   padding: 22px 20px;
   margin-bottom: 18px;
-  box-shadow: 0 8px 24px rgba(44, 74, 92, 0.28);
+  box-shadow: 0 10px 28px rgba(44, 74, 92, 0.32), 0 0 0 1px rgba(194, 153, 83, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-hero-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(44, 74, 92, 0.38), 0 0 0 1.5px rgba(194, 153, 83, 0.6);
 }
 
 .date-header-row {
@@ -1087,6 +1220,20 @@ body.invitation-opened .invitation-body {
   flex-direction: column;
   align-items: center;
   box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.schedule-box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.schedule-box.sched-akad {
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s, box-shadow 0.25s ease;
+}
+
+.schedule-box.sched-resepsi {
+  transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s, box-shadow 0.25s ease;
 }
 
 .sched-icon-bubble {
@@ -1145,8 +1292,15 @@ body.invitation-opened .invitation-body {
 }
 
 .venue-icon-pin {
-  font-size: 22px;
-  margin-bottom: 4px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(71, 112, 135, 0.12);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 
 .venue-title {
@@ -1224,6 +1378,17 @@ body.invitation-opened .invitation-body {
   font-weight: 700;
   color: var(--primary-blue);
   line-height: 1;
+  display: inline-block;
+}
+
+.count-num.num-tick {
+  animation: numTick 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes numTick {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.18); color: var(--accent-gold); }
+  100% { transform: scale(1); color: var(--primary-blue); }
 }
 
 .count-lbl {
@@ -1249,8 +1414,14 @@ body.invitation-opened .invitation-body {
   border-radius: 16px;
   overflow: hidden;
   border: 2px solid var(--border-subtle);
-  margin-bottom: 14px;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 16px;
+  box-shadow: 0 6px 18px rgba(44, 74, 92, 0.12);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+
+.map-embed-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 24px rgba(44, 74, 92, 0.22);
 }
 
 .gmap-frame {
@@ -1262,6 +1433,23 @@ body.invitation-opened .invitation-body {
 
 .map-btn-wrap {
   margin-bottom: 10px;
+}
+
+.btn-gmaps-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gmaps-link::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: rotate(25deg);
+  animation: btnShimmerSweep 3.6s ease-in-out infinite;
 }
 
 .btn-primary-glow {
@@ -1317,15 +1505,32 @@ body.invitation-opened .invitation-body {
   position: relative;
   border: 1.5px solid rgba(255, 255, 255, 0.95);
   background: #204c75;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
 }
+
+.gallery-grid-3x3.is-visible .grid-item {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gallery-grid-3x3.is-visible .grid-item:nth-child(1) { transition-delay: 0.05s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(2) { transition-delay: 0.10s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(3) { transition-delay: 0.15s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(4) { transition-delay: 0.20s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(5) { transition-delay: 0.25s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(6) { transition-delay: 0.30s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(7) { transition-delay: 0.35s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(8) { transition-delay: 0.40s; }
+.gallery-grid-3x3.is-visible .grid-item:nth-child(9) { transition-delay: 0.45s; }
 
 .grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease;
 }
 
 .item-zoom-icon {
@@ -1335,19 +1540,29 @@ body.invitation-opened .invitation-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  color: #ffffff;
   opacity: 0;
   transition: opacity 0.25s ease;
 }
 
-.grid-item:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 16px rgba(44, 74, 92, 0.25);
-  z-index: 2;
+.item-zoom-icon svg {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.grid-item:hover,
+.gallery-grid-3x3.is-visible .grid-item:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(44, 74, 92, 0.3);
+  z-index: 3;
 }
 
 .grid-item:hover img {
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
 .grid-item:hover .item-zoom-icon {
@@ -1360,7 +1575,15 @@ body.invitation-opened .invitation-body {
   font-style: italic;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+}
+
+.hint-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-gold);
 }
 
 /* ==========================================================================
@@ -1369,22 +1592,37 @@ body.invitation-opened .invitation-body {
 .gift-cards-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
   margin-bottom: 12px;
 }
 
 .bank-card-item {
-  background: linear-gradient(135deg, #244254 0%, #3a627a 100%);
   color: #ffffff;
-  border-radius: 16px;
-  padding: 18px 20px;
-  box-shadow: 0 6px 18px rgba(40, 65, 80, 0.22);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 24px rgba(20, 45, 65, 0.25);
   text-align: left;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bank-card-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(20, 45, 65, 0.32);
+}
+
+.bank-card-item.card-bjb {
+  background: linear-gradient(135deg, #0b3866 0%, #16538c 50%, #1f6f9e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.bank-card-item.card-dana {
+  background: linear-gradient(135deg, #0b6cb8 0%, #118eea 50%, #29a3f8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .bank-card-item::after {
@@ -1392,10 +1630,10 @@ body.invitation-opened .invitation-body {
   position: absolute;
   top: -30px;
   right: -30px;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
@@ -1403,62 +1641,124 @@ body.invitation-opened .invitation-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.bank-logo-chip {
-  font-size: 10px;
+.bank-chip-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emv-chip-svg {
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.25));
+}
+
+.wallet-icon-svg {
+  color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+}
+
+.bank-type-pill {
+  font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
 }
 
-.bank-name-label {
+.bank-badge-bjb {
+  background: #ffffff;
+  color: #0b3866;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--accent-soft-gold);
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  display: inline-flex;
+  align-items: center;
+}
+
+.bank-badge-bjb strong {
+  color: #e09612;
+  margin-left: 2px;
+}
+
+.bank-badge-dana {
+  background: #ffffff;
+  color: #118eea;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  display: inline-flex;
+  align-items: center;
+}
+
+.bank-acc-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .bank-acc-number {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: 2px;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .bank-acc-holder {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 14px;
+}
+
+.bank-acc-holder strong {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .btn-copy-acc {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 16px;
-  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  padding: 7px 16px;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
 }
 
 .btn-copy-acc:hover {
-  background: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
 }
 
 .physical-gift-card {
   background: #f7fafc;
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: 18px 20px;
+  border-radius: 18px;
+  padding: 20px 20px;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
@@ -1467,8 +1767,15 @@ body.invitation-opened .invitation-body {
 }
 
 .gift-icon-bubble {
-  font-size: 24px;
-  margin-bottom: 4px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(71, 112, 135, 0.12);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 
 .gift-card-title {
@@ -1476,20 +1783,20 @@ body.invitation-opened .invitation-body {
   font-size: 17px;
   font-weight: 700;
   color: var(--primary-dark);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .gift-address-text {
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--text-body);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.55;
+  margin-bottom: 14px;
 }
 
 .physical-gift-card .btn-copy-acc {
   background: #ffffff;
   color: var(--primary-blue);
-  border: 1px solid var(--primary-blue);
+  border: 1.5px solid var(--primary-blue);
 }
 
 .physical-gift-card .btn-copy-acc:hover {
@@ -1564,7 +1871,10 @@ body.invitation-opened .invitation-body {
 }
 
 .att-tag {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   padding: 8px 6px;
   text-align: center;
   font-size: 11px;
@@ -1576,11 +1886,33 @@ body.invitation-opened .invitation-body {
   transition: all 0.2s ease;
 }
 
+.att-svg {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.att-svg.icon-hadir {
+  color: #2e7d32;
+}
+
+.att-svg.icon-tidakhadir {
+  color: #c62828;
+}
+
+.att-svg.icon-ragu {
+  color: #d97706;
+}
+
 .att-pill input:checked + .att-tag {
   background: var(--primary-blue);
   color: #ffffff;
   border-color: var(--primary-blue);
   box-shadow: 0 2px 6px rgba(71, 112, 135, 0.25);
+}
+
+.att-pill input:checked + .att-tag .att-svg {
+  color: #ffffff;
 }
 
 .btn-submit-wishes {
@@ -1805,18 +2137,47 @@ body.invitation-opened .invitation-body {
   padding: 10px 22px;
   font-size: 12.5px;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-share-wa::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: rotate(25deg);
+  animation: btnShimmerSweep 4s ease-in-out infinite;
 }
 
 .btn-share-wa:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
 }
 
 .footer-bottom-credit {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+.music-credit-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 2px;
+}
+
+.credit-music-svg {
+  color: var(--primary-blue);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -1937,6 +2298,14 @@ body.invitation-opened .invitation-body {
   max-height: 75vh;
   object-fit: contain;
   display: block;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+#lightbox-img.fade-transition {
+  opacity: 0.15;
+  transform: scale(0.95);
 }
 
 .lightbox-btn-close {
@@ -2034,14 +2403,18 @@ body.invitation-opened .invitation-body {
 .toast-icon {
   background: #25D366;
   color: #ffffff;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.toast-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* ==========================================================================
@@ -2209,23 +2582,27 @@ body.invitation-opened .invitation-body {
 }
 
 @keyframes swayTL {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(3.5deg) scale(1.04); }
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-4px) rotate(1.5deg) scale(1.02); }
+  100% { transform: translateY(2px) rotate(3deg) scale(1.04); }
 }
 
 @keyframes swayTR {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(-3.5deg) scale(1.04); }
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-5px) rotate(-1.5deg) scale(1.02); }
+  100% { transform: translateY(2px) rotate(-3deg) scale(1.04); }
 }
 
 @keyframes swayBL {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(-3deg) scale(1.03); }
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(4px) rotate(-1.5deg) scale(1.02); }
+  100% { transform: translateY(-2px) rotate(-3deg) scale(1.03); }
 }
 
 @keyframes swayBR {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(3deg) scale(1.03); }
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(5px) rotate(1.5deg) scale(1.02); }
+  100% { transform: translateY(-2px) rotate(3deg) scale(1.03); }
 }
 
 @media (max-width: 480px) {
