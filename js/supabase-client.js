@@ -10,11 +10,21 @@
 (function (window) {
   'use strict';
 
+  function normalizeSupabaseUrl(url) {
+    if (!url) return '';
+    let clean = url.trim();
+    if (!clean.startsWith('http://') && !clean.startsWith('https://')) {
+      clean = `https://${clean}.supabase.co`;
+    }
+    clean = clean.replace(/\/rest\/v1\/?$/, '');
+    clean = clean.replace(/\/$/, '');
+    return clean;
+  }
+
   // Konfigurasi Supabase
-  // Anda bisa mengisi URL & Anon Key langsung di sini, atau lewat menu Pengaturan di admin.html
   const CONFIG = {
-    URL: window.__SUPABASE_URL__ || localStorage.getItem('app_supabase_url') || '',
-    ANON_KEY: window.__SUPABASE_ANON_KEY__ || localStorage.getItem('app_supabase_anon_key') || '',
+    URL: normalizeSupabaseUrl(window.__SUPABASE_URL__ || localStorage.getItem('app_supabase_url') || 'https://qbjiljgbdvzvthtszjhy.supabase.co'),
+    ANON_KEY: (window.__SUPABASE_ANON_KEY__ || localStorage.getItem('app_supabase_anon_key') || '').trim(),
     TABLE: 'rsvp_wishes'
   };
 
@@ -76,14 +86,17 @@
     },
 
     saveCredentials: function (url, key) {
-      if (url) localStorage.setItem('app_supabase_url', url.trim());
+      const cleanUrl = normalizeSupabaseUrl(url);
+      const cleanKey = key ? key.trim() : '';
+
+      if (cleanUrl) localStorage.setItem('app_supabase_url', cleanUrl);
       else localStorage.removeItem('app_supabase_url');
 
-      if (key) localStorage.setItem('app_supabase_anon_key', key.trim());
+      if (cleanKey) localStorage.setItem('app_supabase_anon_key', cleanKey);
       else localStorage.removeItem('app_supabase_anon_key');
 
-      CONFIG.URL = url ? url.trim() : '';
-      CONFIG.ANON_KEY = key ? key.trim() : '';
+      CONFIG.URL = cleanUrl;
+      CONFIG.ANON_KEY = cleanKey;
       initClient();
       return this.isConfigured();
     },
@@ -271,3 +284,4 @@
 
   window.SupabaseRSVP = SupabaseRSVP;
 })(window);
+
