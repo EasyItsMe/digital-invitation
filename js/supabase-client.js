@@ -24,7 +24,7 @@
   // Konfigurasi Supabase
   const CONFIG = {
     URL: normalizeSupabaseUrl(window.__SUPABASE_URL__ || localStorage.getItem('app_supabase_url') || 'https://qbjiljgbdvzvthtszjhy.supabase.co'),
-    ANON_KEY: (window.__SUPABASE_ANON_KEY__ || localStorage.getItem('app_supabase_anon_key') || '').trim(),
+    ANON_KEY: (window.__SUPABASE_ANON_KEY__ || localStorage.getItem('app_supabase_anon_key') || 'sb_publishable_YYDgmKmKCQnSljYr4HCFgg_AAtAJQtA').trim(),
     TABLE: 'rsvp_wishes'
   };
 

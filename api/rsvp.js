@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
   }
 
   const SUPABASE_URL = process.env.SUPABASE_URL || 'https://qbjiljgbdvzvthtszjhy.supabase.co';
-  const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || 'sb_publishable_YYDgmKmKCQnSljYr4HCFgg_AAtAJQtA';
 
   if (!SUPABASE_URL || !SUPABASE_KEY) {
     return res.status(200).json({
