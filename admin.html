@@ -1487,8 +1487,21 @@
 
       function getBaseInvitationUrl() {
         const loc = window.location;
+        if (loc.protocol.startsWith('http')) {
+          let path = loc.pathname;
+          // Hapus /admin.html, /admin/, atau /admin dari akhir pathname
+          path = path.replace(/\/admin(\.html)?\/?$/i, '');
+          if (!path.endsWith('/')) {
+            path += '/';
+          }
+          return loc.origin + path;
+        }
+        // Fallback untuk mode lokal file:///
         let base = loc.origin + loc.pathname;
-        base = base.replace(/admin\.html.*$/i, '').replace(/\/$/, '') + '/';
+        base = base.replace(/\/admin(\.html)?.*$/i, '');
+        if (!base.endsWith('/')) {
+          base += '/';
+        }
         return base;
       }
 

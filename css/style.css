@@ -945,6 +945,14 @@ body.invitation-opened .invitation-body {
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+.profile-avatar-img.avatar-bride {
+  object-position: center 25%;
+}
+
+.profile-avatar-img.avatar-groom {
+  object-position: center top;
+}
+
 .person-card:hover .profile-avatar-img {
   transform: scale(1.08);
 }
