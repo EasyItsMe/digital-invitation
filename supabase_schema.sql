@@ -67,3 +67,4 @@ ON CONFLICT DO NOTHING;
 
 -- 8. Aktifkan Realtime Replication (agar ucapan muncul seketika tanpa refresh)
 ALTER PUBLICATION supabase_realtime ADD TABLE public.rsvp_wishes;
+

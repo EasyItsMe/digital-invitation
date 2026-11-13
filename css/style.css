@@ -2492,16 +2492,146 @@ body.invitation-opened .invitation-body {
   .sec-content {
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 64px 18px 88px;
-    box-sizing: border-box;
+    padding-top: 56px !important;
+    padding-bottom: 125px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    box-sizing: border-box !important;
   }
   
+  /* Safe padding & refined proportions for Cover / Opening Screen */
+  .corner-floral {
+    width: 68px !important;
+    height: 68px !important;
+    opacity: 0.88 !important;
+  }
+  .sec-hero {
+    padding-top: max(38px, env(safe-area-inset-top, 32px)) !important;
+    padding-bottom: 22px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    justify-content: space-around !important;
+  }
+  .hero-top-badge {
+    margin-top: 4px !important;
+    margin-bottom: 12px !important;
+    max-width: calc(100% - 64px) !important;
+  }
+  .eyebrow-text {
+    font-size: 11px !important;
+    letter-spacing: 0.6px !important;
+    line-height: 1.2 !important;
+  }
+  .hero-arch-wrap {
+    width: 140px !important;
+    height: 180px !important;
+    margin-bottom: 8px !important;
+  }
   .hero-title-script {
-    font-size: 46px;
+    font-size: 40px !important;
+    margin-bottom: 2px !important;
+  }
+  .hero-full-names {
+    font-size: 13px !important;
+    margin-bottom: 8px !important;
+  }
+  .khitan-announcement-pill {
+    padding: 5px 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .hero-date-location {
+    font-size: 11px !important;
+    margin-bottom: 10px !important;
+  }
+  .hero-guest-box {
+    padding: 10px 16px !important;
+    margin-bottom: 12px !important;
+    max-width: 320px !important;
+    width: 100% !important;
+  }
+  .btn-open-envelope {
+    padding: 11px 28px !important;
+  }
+  .sec-hero .flower-anchor {
+    width: 115px !important;
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
   }
   
   .sec-title-serif {
     font-size: 26px;
+  }
+
+  /* Schedule Cards Grid: 1 Column on Mobile so nothing is ever truncated or cut off */
+  .schedule-cards-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 16px !important;
+  }
+  .schedule-box {
+    width: 100% !important;
+    padding: 18px 16px !important;
+    box-sizing: border-box !important;
+  }
+  .sched-time-pill {
+    font-size: 11.5px !important;
+    padding: 4px 12px !important;
+    white-space: normal !important;
+  }
+  .venue-location-card {
+    width: 100% !important;
+    max-width: 380px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 18px 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Countdown Grid */
+  .countdown-section {
+    width: 100% !important;
+    max-width: 380px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 16px !important;
+  }
+  .countdown-grid {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .count-box {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 10px 4px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+  .count-num {
+    font-size: 24px !important;
+    line-height: 1.1 !important;
+  }
+  .count-lbl {
+    font-size: 9.5px !important;
+    font-weight: 600 !important;
+    color: #5c7485 !important;
+    margin-top: 3px !important;
+    display: block !important;
+  }
+  .count-sep {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #c29953 !important;
+    padding: 0 1px !important;
   }
 
   .floating-dock-nav {
@@ -2670,8 +2800,9 @@ body.invitation-opened .invitation-body {
 
 @media (max-width: 600px) {
   .corner-floral {
-    width: 78px;
-    height: 78px;
+    width: 68px !important;
+    height: 68px !important;
+    opacity: 0.88 !important;
   }
 }
 
