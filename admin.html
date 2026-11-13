@@ -705,6 +705,182 @@
       font-weight: 600;
       cursor: pointer;
     }
+
+    /* Generator Link Tamu & WhatsApp */
+    .generator-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(36, 66, 84, 0.05);
+    }
+
+    .generator-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .gen-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gen-badge-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(44, 83, 100, 0.1);
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gen-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin: 0;
+    }
+
+    .gen-subtitle {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin: 2px 0 0;
+    }
+
+    .gen-input-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .gen-input-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gen-input-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .gen-input-group input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 13px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .gen-input-group input:focus {
+      border-color: var(--primary-blue);
+    }
+
+    .gen-output-box {
+      margin-bottom: 12px;
+    }
+
+    .gen-output-box label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .gen-link-field {
+      display: flex;
+      gap: 6px;
+    }
+
+    .gen-link-field input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 12px;
+      background: #f8fafc;
+      color: var(--primary-blue);
+      font-family: monospace;
+      outline: none;
+    }
+
+    .btn-gen-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      color: var(--primary-blue);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-gen-action:hover {
+      background: var(--bg-mist);
+    }
+
+    .gen-buttons-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-gen-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      background: #25D366;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gen-wa:hover {
+      background: #1ebc59;
+    }
+
+    .btn-gen-copytext {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-gen-copytext:hover {
+      background: var(--primary-dark);
+    }
   </style>
 </head>
 <body>
@@ -791,6 +967,58 @@
         <div class="stat-card stat-ragu">
           <div class="stat-num" id="stat-ragu">0</div>
           <div class="stat-label">Masih Ragu</div>
+        </div>
+      </section>
+
+      <!-- Generator Link Undangan Tamu (WhatsApp) -->
+      <section class="generator-card" id="generator-card">
+        <div class="generator-header">
+          <div class="gen-header-left">
+            <span class="gen-badge-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            </span>
+            <div>
+              <h2 class="gen-title">Generator Link Tamu & WhatsApp</h2>
+              <p class="gen-subtitle">Ketik nama tamu untuk membuat link khusus dan pesan siap kirim</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="generator-body">
+          <div class="gen-input-row">
+            <div class="gen-input-group">
+              <label for="gen-guest-name">Nama Tamu Undangan:</label>
+              <input type="text" id="gen-guest-name" placeholder="Contoh: Bapak Joko & Keluarga" autocomplete="off">
+            </div>
+            <div class="gen-input-group gen-phone-group">
+              <label for="gen-guest-phone">No. WhatsApp (Opsional):</label>
+              <input type="tel" id="gen-guest-phone" placeholder="Contoh: 08123456789">
+            </div>
+          </div>
+
+          <!-- Generated Link Row -->
+          <div class="gen-output-box">
+            <label>Link Undangan Khusus Tamu:</label>
+            <div class="gen-link-field">
+              <input type="text" id="gen-output-url" readonly value="">
+              <button type="button" class="btn-gen-action" id="btn-copy-guest-url" title="Salin Link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                <span>Salin Link</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Preview & Action Buttons -->
+          <div class="gen-buttons-row">
+            <button type="button" class="btn-gen-wa" id="btn-send-whatsapp">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.32C9.37 7.32 9.11 7.38 8.88 7.63C8.65 7.88 8 8.49 8 9.72C8 10.96 8.9 12.15 9.02 12.31C9.15 12.47 10.77 15.08 13.3 16.08C15.4 16.91 15.83 16.74 16.3 16.7C16.77 16.65 17.83 16.07 18.05 15.45C18.27 14.83 18.27 14.3 18.2 14.19C18.14 14.07 17.98 14.01 17.74 13.89C17.5 13.76 16.32 13.18 16.1 13.1C15.88 13.02 15.72 12.98 15.56 13.22C15.4 13.47 14.94 14.01 14.8 14.17C14.66 14.34 14.53 14.36 14.29 14.24C14.05 14.11 13.28 13.86 12.36 13.04C11.64 12.4 11.16 11.61 11.02 11.37C10.89 11.12 11 10.99 11.12 10.87C11.23 10.76 11.37 10.58 11.49 10.44C11.61 10.3 11.65 10.2 11.73 10.03C11.81 9.87 11.77 9.73 11.71 9.61C11.65 9.48 11.19 8.35 11 7.89C10.81 7.44 10.62 7.5 10.48 7.5H10.15C9.91 7.5 9.7 7.44 9.53 7.32Z"/></svg>
+              <span>Kirim via WhatsApp</span>
+            </button>
+            <button type="button" class="btn-gen-copytext" id="btn-copy-wa-text">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 2h-14c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H5V4h14v16z"/></svg>
+              <span>Salin Teks Undangan</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -1248,6 +1476,107 @@
           showToast('Gagal menyalin teks.');
         });
       });
+
+      // Generator Link Undangan Tamu (WhatsApp)
+      const genGuestName = document.getElementById('gen-guest-name');
+      const genGuestPhone = document.getElementById('gen-guest-phone');
+      const genOutputUrl = document.getElementById('gen-output-url');
+      const btnCopyGuestUrl = document.getElementById('btn-copy-guest-url');
+      const btnSendWhatsapp = document.getElementById('btn-send-whatsapp');
+      const btnCopyWaText = document.getElementById('btn-copy-wa-text');
+
+      function getBaseInvitationUrl() {
+        const loc = window.location;
+        let base = loc.origin + loc.pathname;
+        base = base.replace(/admin\.html.*$/i, '').replace(/\/$/, '') + '/';
+        return base;
+      }
+
+      function updateGeneratedInvitation() {
+        const rawName = genGuestName ? genGuestName.value.trim() : '';
+        const baseUrl = getBaseInvitationUrl();
+        const guestUrl = rawName ? `${baseUrl}?to=${encodeURIComponent(rawName)}` : baseUrl;
+        
+        if (genOutputUrl) {
+          genOutputUrl.value = guestUrl;
+        }
+        return { name: rawName || 'Bapak/Ibu/Saudara/i', url: guestUrl };
+      }
+
+      function buildWhatsAppText(name, url) {
+        return `Kepada Yth. Bapak/Ibu/Saudara/i:
+*${name}*
+
+Assalamu'alaikum Warahmatullahi Wabarakaatuh
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami serta tasyakuran walimatul khitan ananda kami:
+
+*Siti Ami & Abdul Azis*
+Serta Walimatul Khitan:
+*Andiks Satria & Raditya Panca*
+
+📅 *Waktu Acara:*
+Minggu Malam Senin, 06 Desember 2026
+• Akad Nikah: 08.00 - 09.00 WIB
+• Resepsi & Khitanan: 09.00 WIB - Selesai
+
+📍 *Tempat Acara:*
+Kediaman Mempelai Wanita
+Kp. Buah Gede RT. 009 RW. 005, Desa Sentul, Kec. Kragilan, Kab. Serang - Banten
+
+Untuk informasi lengkap acara, peta lokasi, serta konfirmasi kehadiran (RSVP), silakan buka tautan undangan digital berikut:
+👉 ${url}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu.
+
+Mohon maaf apabila ada kesalahan penulisan nama/gelar.
+Wassalamu'alaikum Warahmatullahi Wabarakaatuh.`;
+      }
+
+      if (genGuestName) {
+        genGuestName.addEventListener('input', updateGeneratedInvitation);
+      }
+
+      updateGeneratedInvitation();
+
+      if (btnCopyGuestUrl) {
+        btnCopyGuestUrl.addEventListener('click', () => {
+          const info = updateGeneratedInvitation();
+          navigator.clipboard.writeText(info.url).then(() => {
+            showToast('Link undangan berhasil disalin!');
+          }).catch(() => {
+            showToast('Gagal menyalin link.');
+          });
+        });
+      }
+
+      if (btnCopyWaText) {
+        btnCopyWaText.addEventListener('click', () => {
+          const info = updateGeneratedInvitation();
+          const text = buildWhatsAppText(info.name, info.url);
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('Teks pesan WhatsApp berhasil disalin!');
+          }).catch(() => {
+            showToast('Gagal menyalin teks.');
+          });
+        });
+      }
+
+      if (btnSendWhatsapp) {
+        btnSendWhatsapp.addEventListener('click', () => {
+          const info = updateGeneratedInvitation();
+          const text = buildWhatsAppText(info.name, info.url);
+          let phone = genGuestPhone ? genGuestPhone.value.trim().replace(/\D/g, '') : '';
+          if (phone.startsWith('0')) {
+            phone = '62' + phone.substring(1);
+          }
+          const waUrl = phone 
+            ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`
+            : `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+          window.open(waUrl, '_blank');
+        });
+      }
+
 
       function showToast(msg) {
         toastText.textContent = msg;

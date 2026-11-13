@@ -49,10 +49,34 @@ document.addEventListener('DOMContentLoaded', () => {
      1. GUEST PERSONALIZATION VIA URL QUERY
      ========================================================================== */
   function initGuestPersonalization() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const guest = urlParams.get('to') || urlParams.get('u') || urlParams.get('guest');
+    let urlParams = new URLSearchParams(window.location.search);
+    let guest = urlParams.get('to') || 
+                urlParams.get('nama') || 
+                urlParams.get('name') || 
+                urlParams.get('tamu') || 
+                urlParams.get('u') || 
+                urlParams.get('guest') || 
+                urlParams.get('undangan') || 
+                urlParams.get('penerima');
+    
+    // Hash parameter fallback (misal: #to=Budi+Santoso)
+    if (!guest && window.location.hash) {
+      const hashClean = window.location.hash.startsWith('#') ? window.location.hash.substring(1) : window.location.hash;
+      const hashParams = new URLSearchParams(hashClean);
+      guest = hashParams.get('to') || 
+              hashParams.get('nama') || 
+              hashParams.get('name') || 
+              hashParams.get('tamu') || 
+              hashParams.get('u') || 
+              hashParams.get('guest');
+    }
+
     if (guest && guest.trim()) {
-      const cleanGuest = guest.trim();
+      let cleanGuest = guest.trim();
+      // Bila menggunakan underscore tanpa spasi (misal: Bpk_Ahmad), ubah jadi spasi
+      if (cleanGuest.includes('_') && !cleanGuest.includes(' ')) {
+        cleanGuest = cleanGuest.replace(/_/g, ' ');
+      }
       if (displayGuestName) displayGuestName.textContent = cleanGuest;
       const inputName = document.getElementById('guest-input-name');
       if (inputName) inputName.value = cleanGuest;
