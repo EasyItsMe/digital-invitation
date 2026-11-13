@@ -5,6 +5,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
   // Elements
   const audio = document.getElementById('bg-music');
   const btnSoundToggle = document.getElementById('btn-sound-toggle');
@@ -147,21 +150,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setTimeout(() => {
+      // Temporarily set scroll behavior to auto to prevent smooth-scroll interpolation glitches during reflow
+      document.documentElement.style.scrollBehavior = 'auto';
+
       document.documentElement.classList.remove('is-locked');
       document.body.classList.remove('is-locked');
       document.body.classList.add('invitation-opened');
 
-      // Since cover is now permanently removed, reset scroll to top so Quotes starts at 0
+      // Reset scroll position immediately
       window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
+      const quotesSec = document.getElementById('sec-quotes');
+      if (quotesSec) {
+        quotesSec.scrollIntoView({ behavior: 'auto', block: 'start' });
+      }
 
       showFloatingDock();
 
-      // Re-initialize reveals now that content is visible
+      // Restore smooth scroll behavior and re-initialize scroll spy
       setTimeout(() => {
+        document.documentElement.style.scrollBehavior = 'smooth';
         initScrollReveals();
         updateScrollSpy();
-      }, 80);
-    }, withScroll ? 420 : 0);
+      }, 100);
+    }, withScroll ? 380 : 0);
   }
 
   if (btnOpenInvitation) {
