@@ -715,11 +715,138 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
+     11c. CELEBRATION FIREWORKS & FLOATING HEARTS INTERACTION
+     ========================================================================== */
+  function initCelebrationButton() {
+    const btnCelebrate = document.getElementById('btn-send-love');
+    const badgeCount = document.getElementById('love-count-badge');
+    if (!btnCelebrate) return;
+
+    const STORAGE_KEY = 'ami_azis_love_count';
+    let currentCount = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    if (isNaN(currentCount) || currentCount < 88) {
+      currentCount = 88;
+    }
+    if (badgeCount) {
+      badgeCount.textContent = currentCount.toLocaleString('id-ID');
+    }
+
+    const fireworkColors = [
+      '#c29953', '#f4d06f', '#ffffff', '#88b5d3', '#4b85ab',
+      '#e57373', '#f06292', '#ffd54f', '#a5d6a7', '#81d4fa'
+    ];
+    const heartColors = [
+      '#e57373', '#f06292', '#ef5350', '#ff8a80', '#c29953',
+      '#ffd54f', '#88b5d3', '#ffffff'
+    ];
+
+    function createFireworkSparks(centerX, centerY) {
+      const sparkCount = 28;
+      for (let i = 0; i < sparkCount; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'firework-spark-particle';
+        const color = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+        const size = Math.random() * 8 + 4;
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 160 + 40;
+        const fx = Math.cos(angle) * distance;
+        const fy = Math.sin(angle) * distance - (Math.random() * 40);
+        
+        const isStar = Math.random() > 0.4;
+        spark.style.width = `${size}px`;
+        spark.style.height = `${size}px`;
+        spark.style.backgroundColor = color;
+        spark.style.left = `${centerX}px`;
+        spark.style.top = `${centerY}px`;
+        spark.style.setProperty('--fx', `${fx}px`);
+        spark.style.setProperty('--fy', `${fy}px`);
+        
+        if (isStar) {
+          spark.style.borderRadius = '2px';
+          spark.style.boxShadow = `0 0 10px ${color}, 0 0 4px #ffffff`;
+        } else {
+          spark.style.borderRadius = '50%';
+          spark.style.boxShadow = `0 0 8px ${color}`;
+        }
+
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1350);
+      }
+    }
+
+    function createFloatingHearts(centerX, centerY) {
+      const heartCount = 7;
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-love-heart';
+        
+        const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+        const size = Math.floor(Math.random() * 14 + 18);
+        const spawnOffsetX = (Math.random() - 0.5) * 80;
+        const spawnOffsetY = (Math.random() - 0.5) * 20;
+
+        const w1 = (Math.random() - 0.5) * 60;
+        const w2 = (Math.random() - 0.5) * 90;
+        const w3 = (Math.random() - 0.5) * 110;
+        const w4 = (Math.random() - 0.5) * 130;
+        const rotMid = (Math.random() - 0.5) * 40;
+        const rotEnd = (Math.random() - 0.5) * 80;
+
+        heart.style.left = `${centerX + spawnOffsetX}px`;
+        heart.style.top = `${centerY + spawnOffsetY}px`;
+        heart.style.width = `${size}px`;
+        heart.style.height = `${size}px`;
+        heart.style.setProperty('--wiggle-x1', `${w1}px`);
+        heart.style.setProperty('--wiggle-x2', `${w2}px`);
+        heart.style.setProperty('--wiggle-x3', `${w3}px`);
+        heart.style.setProperty('--wiggle-x4', `${w4}px`);
+        heart.style.setProperty('--rot-mid', `${rotMid}deg`);
+        heart.style.setProperty('--rot-end', `${rotEnd}deg`);
+
+        heart.innerHTML = `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${color}" style="filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); display: block;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2450);
+      }
+    }
+
+    function showPlusOneFloat(btn) {
+      const p1 = document.createElement('span');
+      p1.className = 'plus-one-float';
+      p1.textContent = '+1';
+      btn.appendChild(p1);
+      setTimeout(() => p1.remove(), 850);
+    }
+
+    btnCelebrate.addEventListener('click', () => {
+      const rect = btnCelebrate.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      btnCelebrate.classList.remove('btn-pressed');
+      void btnCelebrate.offsetWidth;
+      btnCelebrate.classList.add('btn-pressed');
+      setTimeout(() => btnCelebrate.classList.remove('btn-pressed'), 250);
+
+      currentCount += 1;
+      localStorage.setItem(STORAGE_KEY, currentCount.toString());
+      if (badgeCount) {
+        badgeCount.textContent = currentCount.toLocaleString('id-ID');
+      }
+
+      showPlusOneFloat(btnCelebrate);
+      createFireworkSparks(centerX, centerY);
+      createFloatingHearts(centerX, centerY);
+    });
+  }
+
+  /* ==========================================================================
      12. INITIALIZATION CALLS
      ========================================================================== */
   initGuestPersonalization();
   initCountdown();
   initGalleryLightbox();
   initFastTypewriter();
+  initCelebrationButton();
   renderWishes();
 });
