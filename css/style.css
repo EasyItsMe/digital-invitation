@@ -2523,13 +2523,30 @@ body.invitation-opened .invitation-body {
     line-height: 1.2 !important;
   }
   .hero-arch-wrap {
-    width: 140px !important;
-    height: 180px !important;
-    margin-bottom: 8px !important;
+    width: 136px !important;
+    height: 174px !important;
+    margin-bottom: 18px !important;
+    position: relative !important;
+  }
+  .hero-arch-frame {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 68px 68px 0 0 !important;
+    box-sizing: border-box !important;
+  }
+  .hero-couple-img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 64px 64px 0 0 !important;
+  }
+  .arch-glow-ring {
+    border-radius: 74px 74px 0 0 !important;
   }
   .hero-title-script {
     font-size: 40px !important;
-    margin-bottom: 2px !important;
+    line-height: 1.15 !important;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
   }
   .hero-full-names {
     font-size: 13px !important;
