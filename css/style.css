@@ -747,9 +747,16 @@ body.invitation-opened .invitation-body {
    6. COMMON SECTION HEADINGS & DECOR
    ========================================================================== */
 .sec-content {
-  padding: 56px 22px 42px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 68px 22px 84px;
   position: relative;
-  border-bottom: 1px solid rgba(71, 112, 135, 0.1);
+  border-bottom: 1px solid rgba(71, 112, 135, 0.08);
   background: #ffffff;
 }
 
@@ -762,9 +769,11 @@ body.invitation-opened .invitation-body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   position: relative;
   z-index: 2;
+  margin: auto 0;
 }
 
 .eyebrow-accent {
@@ -799,36 +808,36 @@ body.invitation-opened .invitation-body {
    ========================================================================== */
 .bismillah-arabic {
   font-family: var(--font-serif);
-  font-size: 23px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--primary-blue);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   letter-spacing: 1px;
 }
 
 .section-intro-text {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--text-body);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-weight: 500;
 }
 
 .quote-arch-frame {
-  width: 140px;
-  height: 176px;
-  border: 2px solid var(--primary-blue);
-  border-radius: 70px 70px 0 0;
+  width: 156px;
+  height: 196px;
+  border: 2.5px solid var(--primary-blue);
+  border-radius: 78px 78px 0 0;
   padding: 4px;
   background: #ffffff;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow-sm);
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(71, 112, 135, 0.16);
 }
 
 .arch-photo-inner {
   width: 100%;
   height: 100%;
-  border-radius: 66px 66px 0 0;
+  border-radius: 74px 74px 0 0;
   overflow: hidden;
   background: #255da1;
 }
@@ -845,10 +854,10 @@ body.invitation-opened .invitation-body {
   border: 1px solid var(--border-subtle);
   border-left: 3px solid var(--accent-gold);
   border-radius: 12px;
-  padding: 18px 20px;
+  padding: 20px 22px 18px;
   position: relative;
   max-width: 400px;
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .quote-mark {
@@ -2467,6 +2476,13 @@ body.invitation-opened .invitation-body {
     border-radius: 0;
     box-shadow: none;
     border: none;
+  }
+
+  .sec-content {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 58px 18px 84px;
+    box-sizing: border-box;
   }
   
   .hero-title-script {
