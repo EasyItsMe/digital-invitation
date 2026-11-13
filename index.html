@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261113_19">
+  <link rel="stylesheet" href="css/style.css?v=20261113_20">
 
   <!-- Critical Centering, Gateway Lock & Responsive Rules -->
   <style>
@@ -414,11 +414,26 @@
         object-fit: cover !important;
         object-position: center 20% !important;
       }
-      .profile-avatar-img.avatar-bride {
-        object-position: center 25% !important;
-      }
+      .profile-avatar-img.avatar-bride,
       .profile-avatar-img.avatar-groom {
-        object-position: center top !important;
+        object-position: center center !important;
+      }
+      /* Fast Typewriter Animation */
+      .typewriter-cursor {
+        display: inline-block;
+        color: #c29953;
+        font-weight: 300;
+        margin-left: 2px;
+        animation: cursorBlink 0.6s infinite alternate;
+        vertical-align: baseline;
+      }
+      .typewriter-cursor.cursor-fade {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      @keyframes cursorBlink {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
       }
       .arch-glow-ring {
         border-radius: 74px 74px 0 0 !important;
@@ -894,7 +909,7 @@
 
             <div class="quote-card-box">
               <span class="quote-mark">“</span>
-              <p class="quote-verse-text">
+              <p class="quote-verse-text" data-typewriter="true">
                 Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.
               </p>
               <p class="quote-surah-tag">QS. Ar-Rum : 21</p>
@@ -1000,7 +1015,7 @@
                 <p class="khitan-prayer-arabic">
                   اللَّهُمَّ بَارِكْ فِيهِمَا وَوَفِّقْهُمَا لِطَاعَتِكَ وَارْزُقْنَا بِرَّهُمَا
                 </p>
-                <p class="khitan-prayer-trans">
+                <p class="khitan-prayer-trans" data-typewriter="true">
                   "Semoga Allah SWT memberkahi langkah ananda, menyempurnakan keislamannya, serta menjadikan putra-putra kami anak yang sholeh, cerdas, berbakti kepada kedua orang tua, agama, nusa, dan bangsa. Aamiin ya Rabbal 'Alamin."
                 </p>
               </div>
@@ -1464,11 +1479,11 @@
           <div class="sec-inner reveal">
             <h3 class="thanks-salam-title">Wassalamu'alaikum<br>Warahmatullahi Wabarakaatuh</h3>
             
-            <p class="thanks-paragraph">
+            <p class="thanks-paragraph" data-typewriter="true">
               Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kedua mempelai serta ananda kami.
             </p>
 
-            <p class="thanks-subparagraph">
+            <p class="thanks-subparagraph" data-typewriter="true">
               Atas kehadiran serta do'a restunya, kami ucapkan terima kasih yang sebesar-besarnya.
             </p>
 
@@ -1590,9 +1605,9 @@
 
   <!-- Supabase Cloud Engine & RSVP Sync Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-client.js?v=20261113_19"></script>
+  <script src="js/supabase-client.js?v=20261113_20"></script>
 
   <!-- JavaScript Engine -->
-  <script src="js/app.js?v=20261113_19"></script>
+  <script src="js/app.js?v=20261113_20"></script>
 </body>
 </html>

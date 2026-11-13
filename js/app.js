@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.scrollBehavior = 'smooth';
         initScrollReveals();
         updateScrollSpy();
+        window.dispatchEvent(new CustomEvent('invitation-opened'));
       }, 100);
     }, withScroll ? 380 : 0);
   }
@@ -609,10 +610,101 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
+     11b. FAST TYPEWRITER ANIMATION FOR QUOTES & PRAYERS
+     ========================================================================== */
+  function initFastTypewriter() {
+    const typewriterElements = document.querySelectorAll('[data-typewriter="true"]');
+    if (!typewriterElements.length) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    typewriterElements.forEach(el => {
+      const fullText = el.textContent.replace(/\s+/g, ' ').trim();
+      el.setAttribute('data-full-text', fullText);
+
+      if (prefersReducedMotion) {
+        el.textContent = fullText;
+        return;
+      }
+
+      el.innerHTML = '<span class="typewriter-text"></span><span class="typewriter-cursor">|</span>';
+    });
+
+    if (prefersReducedMotion) return;
+
+    function runTyping(el) {
+      if (el.dataset.typingDone === 'true' || el.dataset.isTyping === 'true') return;
+      el.dataset.isTyping = 'true';
+
+      const fullText = el.getAttribute('data-full-text') || '';
+      const textSpan = el.querySelector('.typewriter-text');
+      const cursorSpan = el.querySelector('.typewriter-cursor');
+      if (!textSpan) return;
+
+      let charIndex = 0;
+      // Fast speed: 2 characters per tick for snappy, elegant pacing
+      const step = fullText.length > 100 ? 2 : 1;
+      const speed = 14; // ms
+
+      const typingInterval = setInterval(() => {
+        charIndex += step;
+        if (charIndex >= fullText.length) {
+          textSpan.textContent = fullText;
+          clearInterval(typingInterval);
+          el.dataset.typingDone = 'true';
+          el.dataset.isTyping = 'false';
+          if (cursorSpan) {
+            setTimeout(() => {
+              cursorSpan.classList.add('cursor-fade');
+              setTimeout(() => cursorSpan.remove(), 400);
+            }, 800);
+          }
+        } else {
+          textSpan.textContent = fullText.substring(0, charIndex);
+        }
+      }, speed);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Only start typing once invitation is opened
+            if (!document.documentElement.classList.contains('is-locked') && !document.body.classList.contains('is-locked')) {
+              runTyping(entry.target);
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      typewriterElements.forEach(el => observer.observe(el));
+
+      window.addEventListener('invitation-opened', () => {
+        typewriterElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            runTyping(el);
+            observer.unobserve(el);
+          }
+        });
+      });
+    } else {
+      typewriterElements.forEach(el => {
+        el.textContent = el.getAttribute('data-full-text');
+      });
+    }
+  }
+
+  /* ==========================================================================
      12. INITIALIZATION CALLS
      ========================================================================== */
   initGuestPersonalization();
   initCountdown();
   initGalleryLightbox();
+  initFastTypewriter();
   renderWishes();
 });
