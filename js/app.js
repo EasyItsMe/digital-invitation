@@ -642,9 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!textSpan) return;
 
       let charIndex = 0;
-      // Fast speed: 2 characters per tick for snappy, elegant pacing
-      const step = fullText.length > 100 ? 2 : 1;
-      const speed = 14; // ms
+      // 1 character per tick with gentle, rhythmic pacing (~25ms) for authentic typewriter feel
+      const step = 1;
+      const speed = 25; // ms per keystroke
 
       const typingInterval = setInterval(() => {
         charIndex += step;
@@ -663,6 +663,21 @@ document.addEventListener('DOMContentLoaded', () => {
           textSpan.textContent = fullText.substring(0, charIndex);
         }
       }, speed);
+
+      // Tap to reveal full text immediately for convenience
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        if (el.dataset.typingDone !== 'true') {
+          clearInterval(typingInterval);
+          textSpan.textContent = fullText;
+          el.dataset.typingDone = 'true';
+          el.dataset.isTyping = 'false';
+          if (cursorSpan) {
+            cursorSpan.classList.add('cursor-fade');
+            setTimeout(() => cursorSpan.remove(), 300);
+          }
+        }
+      }, { once: true });
     }
 
     if ('IntersectionObserver' in window) {

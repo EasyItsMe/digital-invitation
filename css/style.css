@@ -906,6 +906,39 @@ body.invitation-opened .invitation-body {
   transition: opacity 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.44s, transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) 0.44s, box-shadow 0.25s ease;
 }
 
+/* Opposite Direction Slide Entrance for Mempelai Cards */
+.person-card.bride-card.reveal-left {
+  transform: translateX(-48px);
+}
+
+.person-card.groom-card.reveal-right {
+  transform: translateX(48px);
+}
+
+.person-card.bride-card.reveal-left.is-visible,
+.person-card.groom-card.reveal-right.is-visible {
+  transform: translate(0, 0) scale(1) !important;
+}
+
+.person-card.bride-card .avatar-ring-frame,
+.person-card.groom-card .avatar-ring-frame {
+  transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.person-card.bride-card:not(.is-visible) .avatar-ring-frame {
+  transform: translateX(-15px) scale(0.94);
+}
+
+.person-card.groom-card:not(.is-visible) .avatar-ring-frame {
+  transform: translateX(15px) scale(0.94);
+}
+
+.person-card.bride-card.is-visible .avatar-ring-frame,
+.person-card.groom-card.is-visible .avatar-ring-frame {
+  transform: translateX(0) scale(1);
+}
+
 .person-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);

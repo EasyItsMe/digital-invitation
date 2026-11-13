@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261113_20">
+  <link rel="stylesheet" href="css/style.css?v=20261113_21">
 
   <!-- Critical Centering, Gateway Lock & Responsive Rules -->
   <style>
@@ -417,6 +417,32 @@
       .profile-avatar-img.avatar-bride,
       .profile-avatar-img.avatar-groom {
         object-position: center center !important;
+      }
+      /* Opposite Direction Entrance for Mempelai Cards */
+      .person-card.bride-card.reveal-left {
+        transform: translateX(-48px);
+      }
+      .person-card.groom-card.reveal-right {
+        transform: translateX(48px);
+      }
+      .person-card.bride-card.reveal-left.is-visible,
+      .person-card.groom-card.reveal-right.is-visible {
+        transform: translate(0, 0) scale(1) !important;
+      }
+      .person-card.bride-card .avatar-ring-frame,
+      .person-card.groom-card .avatar-ring-frame {
+        transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform;
+      }
+      .person-card.bride-card:not(.is-visible) .avatar-ring-frame {
+        transform: translateX(-15px) scale(0.94);
+      }
+      .person-card.groom-card:not(.is-visible) .avatar-ring-frame {
+        transform: translateX(15px) scale(0.94);
+      }
+      .person-card.bride-card.is-visible .avatar-ring-frame,
+      .person-card.groom-card.is-visible .avatar-ring-frame {
+        transform: translateX(0) scale(1);
       }
       /* Fast Typewriter Animation */
       .typewriter-cursor {
@@ -940,7 +966,7 @@
             <div class="mempelai-cards-wrap">
               
               <!-- Mempelai Wanita (Siti Ami) -->
-              <div class="person-card bride-card reveal-up">
+              <div class="person-card bride-card reveal-left">
                 <div class="avatar-ring-frame">
                   <div class="avatar-glow"></div>
                   <img src="assets/profil-cewek.jpeg" alt="Siti Ami" class="profile-avatar-img avatar-bride">
@@ -961,7 +987,7 @@
               </div>
 
               <!-- Mempelai Pria (Abdul Azis) -->
-              <div class="person-card groom-card reveal-up">
+              <div class="person-card groom-card reveal-right">
                 <div class="avatar-ring-frame">
                   <div class="avatar-glow"></div>
                   <img src="assets/profil-cowok.jpeg" alt="Abdul Azis" class="profile-avatar-img avatar-groom">
@@ -1605,9 +1631,9 @@
 
   <!-- Supabase Cloud Engine & RSVP Sync Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-client.js?v=20261113_20"></script>
+  <script src="js/supabase-client.js?v=20261113_21"></script>
 
   <!-- JavaScript Engine -->
-  <script src="js/app.js?v=20261113_20"></script>
+  <script src="js/app.js?v=20261113_21"></script>
 </body>
 </html>
