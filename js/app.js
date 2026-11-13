@@ -535,12 +535,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (rsvpForm) {
-    rsvpForm.addEventListener('submit', (e) => {
+    rsvpForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const nameInput = document.getElementById('guest-input-name');
       const attRadio = document.querySelector('input[name="attendance"]:checked');
       const countSelect = document.getElementById('guest-count');
       const msgInput = document.getElementById('guest-message');
+      const submitBtn = rsvpForm.querySelector('button[type="submit"]');
 
       const nameVal = nameInput ? nameInput.value.trim() : '';
       const attVal = attRadio ? attRadio.value : 'Hadir';
@@ -549,20 +550,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!nameVal || !msgVal) return;
 
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Mengirim konfirmasi...</span>`;
+      }
+
       const newWish = {
         name: nameVal,
         attendance: `${attVal} (${countVal})`,
-        message: msgVal,
-        time: 'Baru saja'
+        message: msgVal
       };
 
-      const wishes = getStoredWishes();
-      wishes.unshift(newWish);
-      saveWishes(wishes);
-      renderWishes();
+      try {
+        if (window.SupabaseRSVP) {
+          await window.SupabaseRSVP.submitWish(newWish);
+        } else {
+          const wishes = getStoredWishes();
+          wishes.unshift(Object.assign({ time: 'Baru saja' }, newWish));
+          saveWishes(wishes);
+        }
+      } catch (err) {
+        console.warn('Gagal simpan online, disimpan lokal:', err);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      }
 
       rsvpForm.reset();
-      showToast('Terima kasih banyak atas doa restu Anda!');
+      showToast('Terima kasih banyak atas doa restu & konfirmasi Anda!');
     });
   }
 

@@ -1,7 +1,7 @@
 # Web Undangan Digital Online - Blue Butterfly (Siti Ami & Abdul Azis)
 ## Serta Walimatul Khitan: Andiks Satria & Raditya Panca
 
-Website undangan pernikahan & khitanan online modern bergaya web scroll alami (*smooth scrolling*) yang interaktif, responsif di semua ukuran layar, dan dilengkapi komponen lengkap serta animasi estetik.
+Website undangan pernikahan & khitanan online modern bergaya web scroll alami (*smooth scrolling*) yang interaktif, responsif di semua ukuran layar, dan dilengkapi integrasi cloud database **Supabase** serta siap deploy ke **Vercel** (100% Gratis).
 
 ---
 
@@ -20,42 +20,56 @@ Website undangan pernikahan & khitanan online modern bergaya web scroll alami (*
 
 ---
 
-## ✨ Fitur & Komponen Lengkap
+## ☁️ Integrasi Cloud Database (Supabase) & Hosting (Vercel)
 
-1. **Format Web Scroll Alami (*Mouse & Touch Scroll*)**:
-   - Dapat di-*scroll* dengan mudah menggunakan roda mouse (*mouse wheel*), *touchpad*, maupun usapan jari di layar HP/tablet.
-   - Halaman pembuka (*Cover*) mengunci tampilan hingga tamu menekan tombol **"Buka Undangan"**, lalu halaman terbuka mengalir ke bawah dengan musik berputar otomatis.
-2. **Responsif di Segala Ukuran Layar**:
-   - **Layar PC / Laptop / Monitor Lebar**: Tampil terpusat elegan dengan latar belakang *ambient watercolor* tema Blue Butterfly di sisi kiri dan kanan.
-   - **Tablet / iPad**: Komposisi proporsional dengan sentuhan kartu yang rapi.
-   - **Smartphone / HP (Android / iOS)**: Menyesuaikan 100% *full-width* dengan navigasi sentuh yang nyaman.
-3. **Komponen Lengkap**:
-   - **Cover Opening**: Foto asli berdua di dalam arch monogram, nama tamu dinamis, dan tombol pembuka amplop.
-   - **Quotes**: Bismillah kaligrafi, foto momen manis hidung, dan Surah Ar-Rum : 21.
-   - **Mempelai**: Kartu profil foto studio Siti Ami & Abdul Azis (saling memandang) dengan nama orang tua.
-   - **Walimatul Khitan**: Kartu khusus tasyakuran khitanan untuk Andiks Satria & Raditya Panca beserta doa.
-   - **Acara & Countdown**: Tanggal *Minggu Malam Senin, 06 Des 2026*, jadwal Akad & Resepsi, alamat kediaman, hitung mundur *real-time*, dan tombol **"Simpan ke Google Calendar"**.
-   - **Maps**: Embed peta Google Maps interaktif + tombol rute langsung.
-   - **Gallery ("Our Moment")**: Grid 3x3 (9 foto studio pre-wedding latar biru asli) + modal **Lightbox Zoom** resolusi tinggi (dengan panah geser dan tombol tutup).
-   - **Tanda Kasih / Amplop Digital**: Informasi transfer Bank BCA & BRI dengan tombol **"Salin No. Rekening"** 1-klik, serta alamat pengiriman kado fisik + tombol **"Salin Alamat"** (dilengkapi notifikasi *toast*).
-   - **RSVP & Buku Doa Restu**: Formulir ucapan langsung di halaman web dengan pilihan kehadiran dan penyimpanan lokal (*live wishes feed*).
-   - **Penutup**: Salam penutup, doa, tanda tangan keluarga besar, dan tombol bagikan ke WhatsApp.
-4. **Animasi & Efek Interaktif**:
-   - **Scroll Reveal Animations**: Elemen muncul lembut (*fade-in, slide-up, zoom-in*) saat di-scroll ke area pandang.
-   - **Animasi Kupu-Kupu 3D**: Kupu-kupu biru melayang dan mengepakkan sayap secara dinamis.
-   - **Pemutar Musik Vinyl Melayang**: Tombol piringan hitam (*vinyl disc*) yang berputar saat musik diputar, lengkap dengan animasi not balok melayang.
-   - **Floating Dock Navbar**: Menu navigasi kapsul melayang di bawah layar dengan fitur *scrollspy* (indikator otomatis berpindah mengikuti posisi scroll).
-5. **Personalisasi Tamu Dinamis**:
-   - Cukup tambahkan `?to=Nama+Tamu` pada link. Contoh:  
-     `index.html?to=Bpk.+Supangat`  
-     `index.html?to=Bpk.+Azwar+Anas`
+Undangan ini telah dilengkapi sistem penyimpanan cloud online agar RSVP & Buku Tamu tersinkronisasi antar-semua HP/perangkat tamu dan pengantin secara *real-time*.
+
+### 1. Cara Setup Database Supabase Gratis (Hanya 2 Menit):
+1. Buka [https://supabase.com](https://supabase.com) dan buat akun (gratis).
+2. Buat project baru (misal nama project: `undangan-ami-azis`).
+3. Di bilah menu kiri Supabase, klik **SQL Editor** &gt; **New query**.
+4. Buka file [`supabase_schema.sql`](supabase_schema.sql) dari repo ini, salin seluruh kodenya, tempel di SQL Editor Supabase, lalu klik tombol **Run**.
+5. Buka menu **Project Settings** &gt; **API**. Salin dua nilai berikut:
+   - **Project URL** (contoh: `https://xyzcompany.supabase.co`)
+   - **Project API Keys (anon / public)** (contoh: `eyJhbGciOi...`)
+6. Masukkan kedua nilai tersebut ke dalam file [`js/supabase-client.js`](js/supabase-client.js) pada bagian `CONFIG.URL` dan `CONFIG.ANON_KEY`, **atau** langsung masukkan melalui tombol **"Konfigurasi Supabase"** di halaman [`admin.html`](admin.html).
+
+### 2. Cara Deploy ke Vercel (100% Gratis):
+1. Buka [https://vercel.com](https://vercel.com) dan login menggunakan akun GitHub Anda.
+2. Klik tombol **Add New...** &gt; **Project**.
+3. Pilih repository GitHub: `https://github.com/EasyItsMe/digital-invitation.git`.
+4. (Opsional) Pada bagian **Environment Variables**, tambahkan:
+   - `SUPABASE_URL` = (Project URL Supabase Anda)
+   - `SUPABASE_ANON_KEY` = (Anon Public Key Supabase Anda)
+5. Klik tombol **Deploy**!
+6. Dalam hitungan 15 detik, website Anda sudah aktif secara online di domain Vercel (contoh: `https://digital-invitation-six.vercel.app`).
 
 ---
 
-## 🚀 Cara Menjalankan
+## 🔒 Halaman Khusus Pengantin (Rekap RSVP)
 
-1. **Melalui Batch Script (Paling Mudah)**:
-   Klik ganda [`run.bat`](file:///c:/Projects/online-invitation/run.bat). Browser akan otomatis membuka:
-   👉 **`http://localhost:8080/index.html?to=Tamu+Undangan`**
+Tamu undangan tidak dapat melihat daftar kehadiran tamu lain. Rekapitulasi RSVP, ucapan doa, filter kehadiran, dan jumlah tamu hadir dapat diakses khusus oleh kedua mempelai melalui:
+👉 **`admin.html`**
+
+**Kata Sandi Pengantin:**
+- `ami-azis-2026`
+- `amiazi2026`
+- `123456`
+- `pengantin`
+
+Di halaman ini, pengantin dapat:
+- Melihat total respon, jumlah orang hadir (*pax*), tidak hadir, dan ragu-ragu secara *live*.
+- Menyaring berdasarkan kehadiran (*Hadir, Tidak Hadir, Masih Ragu*).
+- Mencari nama tamu atau kata dalam ucapan.
+- Menyalin (*copy*) ringkasan rekapitulasi kehadiran dengan 1 klik ke clipboard untuk dikirim ke WhatsApp / keluarga.
+- Menghapus ucapan yang tidak diinginkan langsung dari database cloud.
+
+---
+
+## 🚀 Cara Menjalankan Secara Lokal
+
+1. **Melalui Batch Script**:
+   Klik ganda [`run.bat`](run.bat). Browser akan membuka:
+   `http://localhost:8080/index.html?to=Tamu+Undangan`
 2. **Buka Langsung**:
-   Klik ganda [`index.html`](file:///c:/Projects/online-invitation/index.html) di file explorer.
+   Klik ganda [`index.html`](index.html) di file explorer.

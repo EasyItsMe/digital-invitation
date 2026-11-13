@@ -13,6 +13,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- Supabase Cloud SDK & RSVP Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js?v=20261113_14"></script>
+  
   <style>
     :root {
       --primary-blue: #244254;
@@ -512,6 +516,195 @@
         align-items: flex-start;
       }
     }
+
+    /* Cloud Status Card */
+    .cloud-status-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(36, 66, 84, 0.04);
+    }
+
+    .cloud-status-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cloud-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .badge-dot.online {
+      background-color: #2e7d32;
+      box-shadow: 0 0 8px rgba(46, 125, 50, 0.6);
+    }
+
+    .badge-dot.local {
+      background-color: #d97706;
+      box-shadow: 0 0 8px rgba(217, 119, 6, 0.6);
+    }
+
+    .cloud-status-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .btn-setup-cloud {
+      background: var(--bg-mist);
+      color: var(--primary-blue);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-setup-cloud:hover {
+      background: #ffffff;
+      border-color: var(--primary-blue);
+    }
+
+    /* Cloud Settings Modal */
+    .modal-cloud-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 32, 44, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-cloud-overlay.open {
+      display: flex;
+    }
+
+    .modal-cloud-box {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px 22px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-cloud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .modal-cloud-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .modal-cloud-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+    }
+
+    .modal-cloud-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .cloud-field-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .cloud-field-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--primary-blue);
+      margin-bottom: 5px;
+    }
+
+    .cloud-field-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: monospace;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .cloud-field-input:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 2px rgba(36, 66, 84, 0.1);
+    }
+
+    .cloud-modal-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .btn-cloud-save {
+      flex: 1;
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-cloud-test {
+      background: #f1f5f9;
+      color: var(--primary-blue);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -566,6 +759,21 @@
         </div>
       </header>
 
+      <!-- Cloud Database Status Bar -->
+      <section class="cloud-status-card" id="cloud-status-card">
+        <div class="cloud-status-left">
+          <span class="cloud-status-badge">
+            <span class="badge-dot local" id="cloud-status-dot"></span>
+            <span id="cloud-status-title">Memeriksa Database Cloud...</span>
+          </span>
+          <span class="cloud-status-desc" id="cloud-status-desc">Menghubungkan ke Supabase & Vercel...</span>
+        </div>
+        <button type="button" class="btn-setup-cloud" id="btn-open-cloud-modal">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/></svg>
+          <span>Konfigurasi Supabase</span>
+        </button>
+      </section>
+
       <!-- Stats Grid -->
       <section class="stats-cards-grid">
         <div class="stat-card">
@@ -619,6 +827,37 @@
 
   </div>
 
+  <!-- Modal Konfigurasi Supabase Cloud -->
+  <div class="modal-cloud-overlay" id="modal-cloud-overlay">
+    <div class="modal-cloud-box">
+      <div class="modal-cloud-header">
+        <h2 class="modal-cloud-title">Konfigurasi Database Cloud (Supabase)</h2>
+        <button type="button" class="modal-cloud-close" id="btn-close-cloud-modal">&times;</button>
+      </div>
+      <p class="modal-cloud-desc">
+        Hubungkan undangan digital Anda ke Supabase (100% Gratis & siap deploy ke Vercel) agar konfirmasi kehadiran dan ucapan tamu otomatis tersimpan dan sinkron antar-semua HP/perangkat.
+      </p>
+      <div class="cloud-field-group">
+        <label class="cloud-field-label">Supabase Project URL</label>
+        <input type="text" id="input-supabase-url" class="cloud-field-input" placeholder="https://xxxxxxxx.supabase.co">
+      </div>
+      <div class="cloud-field-group">
+        <label class="cloud-field-label">Supabase Anon Public Key</label>
+        <input type="password" id="input-supabase-key" class="cloud-field-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 10px; background: #f8fafc; padding: 10px; border-radius: 8px;">
+        💡 <strong>Petunjuk Cepat:</strong><br>
+        1. Buat project gratis di <a href="https://supabase.com" target="_blank" style="color:var(--primary-blue); font-weight:700;">supabase.com</a><br>
+        2. Buka menu <em>Project Settings &gt; API</em>, lalu salin <strong>Project URL</strong> dan <strong>anon public key</strong> ke atas.<br>
+        3. Jalankan query dari file <code>supabase_schema.sql</code> di menu <em>SQL Editor</em> Supabase.
+      </div>
+      <div class="cloud-modal-actions">
+        <button type="button" class="btn-cloud-test" id="btn-test-cloud">Uji Koneksi</button>
+        <button type="button" class="btn-cloud-save" id="btn-save-cloud">Simpan & Hubungkan</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification -->
   <div id="admin-toast" class="toast-popup">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -649,8 +888,34 @@
       const adminToast = document.getElementById('admin-toast');
       const toastText = document.getElementById('toast-text');
 
+      // Cloud status elements
+      const cloudStatusDot = document.getElementById('cloud-status-dot');
+      const cloudStatusTitle = document.getElementById('cloud-status-title');
+      const cloudStatusDesc = document.getElementById('cloud-status-desc');
+      const btnOpenCloudModal = document.getElementById('btn-open-cloud-modal');
+      const btnCloseCloudModal = document.getElementById('btn-close-cloud-modal');
+      const modalCloudOverlay = document.getElementById('modal-cloud-overlay');
+      const inputSupabaseUrl = document.getElementById('input-supabase-url');
+      const inputSupabaseKey = document.getElementById('input-supabase-key');
+      const btnTestCloud = document.getElementById('btn-test-cloud');
+      const btnSaveCloud = document.getElementById('btn-save-cloud');
+
       let currentFilter = 'all';
       let searchQuery = '';
+      let globalWishesList = [];
+
+      function updateCloudUI(source) {
+        if (!cloudStatusDot || !cloudStatusTitle || !cloudStatusDesc) return;
+        if (source === 'supabase' || source === 'vercel_api') {
+          cloudStatusDot.className = 'badge-dot online';
+          cloudStatusTitle.textContent = 'Cloud Database Terhubung (Online)';
+          cloudStatusDesc.textContent = source === 'supabase' ? 'Tersinkronisasi langsung via Supabase Realtime' : 'Tersinkronisasi via Vercel Serverless Function';
+        } else {
+          cloudStatusDot.className = 'badge-dot local';
+          cloudStatusTitle.textContent = 'Mode Lokal (Belum Terhubung Cloud)';
+          cloudStatusDesc.textContent = 'Klik "Konfigurasi Supabase" untuk menghubungkan gratis.';
+        }
+      }
 
       // Accepted passwords (for Ami & Azis)
       const VALID_PASSWORDS = ['ami-azis-2026', 'amiazi2026', '123456', 'pengantin', 'ami', 'azis'];
@@ -729,8 +994,18 @@
         } catch (e) {}
       }
 
-      function loadDashboardData() {
-        const wishes = getWishes();
+      async function loadDashboardData() {
+        let wishes = [];
+        let source = 'local';
+        if (window.SupabaseRSVP) {
+          const res = await window.SupabaseRSVP.fetchWishes();
+          wishes = res.data || [];
+          source = res.source;
+        } else {
+          wishes = getWishes();
+        }
+        globalWishesList = wishes;
+        updateCloudUI(source);
         updateStats(wishes);
         renderList(wishes);
       }
@@ -749,7 +1024,6 @@
             countRagu++;
           } else {
             countHadir++;
-            // Calculate approximate pax
             if (att.includes('1 orang')) totalPax += 1;
             else if (att.includes('2 orang')) totalPax += 2;
             else if (att.includes('3 orang')) totalPax += 3;
@@ -803,6 +1077,8 @@
           if (att.includes('tidak')) badgeClass = 'tidak-hadir';
           else if (att.includes('ragu')) badgeClass = 'ragu';
 
+          const timeLabel = w.time || (window.SupabaseRSVP ? window.SupabaseRSVP.formatTimeAgo(w.created_at) : 'Terkirim');
+
           card.innerHTML = `
             <div class="wish-card-top">
               <span class="wish-guest-name">${escapeHtml(w.name)}</span>
@@ -810,7 +1086,7 @@
             </div>
             <p class="wish-text-message">${escapeHtml(w.message)}</p>
             <div class="wish-card-bottom">
-              <span>Waktu: ${escapeHtml(w.time || 'Terkirim')}</span>
+              <span>Waktu: ${escapeHtml(timeLabel)}</span>
               <button class="btn-delete-wish" data-index="${index}" title="Hapus ucapan ini">Hapus</button>
             </div>
           `;
@@ -827,11 +1103,15 @@
         });
       }
 
-      function deleteWish(targetWish) {
-        let wishes = getWishes();
-        wishes = wishes.filter(w => !(w.name === targetWish.name && w.message === targetWish.message));
-        saveWishes(wishes);
-        loadDashboardData();
+      async function deleteWish(targetWish) {
+        if (window.SupabaseRSVP) {
+          await window.SupabaseRSVP.deleteWish(targetWish);
+        } else {
+          let wishes = getWishes();
+          wishes = wishes.filter(w => !(w.name === targetWish.name && w.message === targetWish.message));
+          saveWishes(wishes);
+        }
+        await loadDashboardData();
         showToast('Ucapan berhasil dihapus.');
       }
 
@@ -841,19 +1121,95 @@
           filterPills.forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
           currentFilter = pill.getAttribute('data-filter');
-          renderList(getWishes());
+          renderList(globalWishesList);
         });
       });
 
       // Search input
       inputSearch.addEventListener('input', (e) => {
         searchQuery = e.target.value.trim();
-        renderList(getWishes());
+        renderList(globalWishesList);
       });
+
+      // Modal Handlers
+      if (btnOpenCloudModal) {
+        btnOpenCloudModal.addEventListener('click', () => {
+          if (window.SupabaseRSVP) {
+            const conf = window.SupabaseRSVP.getConfig();
+            inputSupabaseUrl.value = conf.url || '';
+            inputSupabaseKey.value = conf.anonKey || '';
+          }
+          modalCloudOverlay.classList.add('open');
+        });
+      }
+
+      if (btnCloseCloudModal) {
+        btnCloseCloudModal.addEventListener('click', () => {
+          modalCloudOverlay.classList.remove('open');
+        });
+      }
+
+      modalCloudOverlay.addEventListener('click', (e) => {
+        if (e.target === modalCloudOverlay) {
+          modalCloudOverlay.classList.remove('open');
+        }
+      });
+
+      if (btnSaveCloud) {
+        btnSaveCloud.addEventListener('click', async () => {
+          const url = inputSupabaseUrl.value.trim();
+          const key = inputSupabaseKey.value.trim();
+          if (window.SupabaseRSVP) {
+            window.SupabaseRSVP.saveCredentials(url, key);
+            showToast('Konfigurasi cloud disimpan! Memuat data...');
+            modalCloudOverlay.classList.remove('open');
+            await loadDashboardData();
+          }
+        });
+      }
+
+      if (btnTestCloud) {
+        btnTestCloud.addEventListener('click', async () => {
+          const url = inputSupabaseUrl.value.trim();
+          const key = inputSupabaseKey.value.trim();
+          if (!url || !key) {
+            alert('Silakan isi URL dan Anon Key terlebih dahulu.');
+            return;
+          }
+          btnTestCloud.disabled = true;
+          btnTestCloud.textContent = 'Menguji...';
+          try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+              const testClient = window.supabase.createClient(url, key);
+              const { data, error } = await testClient.from('rsvp_wishes').select('id').limit(1);
+              if (error) {
+                alert('Gagal terhubung: ' + error.message + '\n\nPastikan Anda sudah menjalankan query supabase_schema.sql di SQL Editor Supabase!');
+              } else {
+                alert('BERHASIL! Koneksi ke tabel rsvp_wishes di Supabase sukses!');
+              }
+            } else {
+              alert('Supabase SDK sedang dimuat. Coba beberapa detik lagi.');
+            }
+          } catch (e) {
+            alert('Gagal: ' + (e.message || 'Koneksi error'));
+          } finally {
+            btnTestCloud.disabled = false;
+            btnTestCloud.textContent = 'Uji Koneksi';
+          }
+        });
+      }
+
+      // Realtime listener
+      if (window.SupabaseRSVP) {
+        window.SupabaseRSVP.subscribeRealtime(() => {
+          loadDashboardData();
+          showToast('Ada konfirmasi RSVP baru masuk!');
+        });
+      }
 
       // Copy summary button
       btnCopySummary.addEventListener('click', () => {
-        const wishes = getWishes();
+        const wishes = globalWishesList.length > 0 ? globalWishesList : getWishes();
         let hadirCount = 0;
         let tidakCount = 0;
         let raguCount = 0;
