@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261113_16">
+  <link rel="stylesheet" href="css/style.css?v=20261113_17">
 
   <!-- Critical Centering, Gateway Lock & Responsive Rules -->
   <style>
@@ -457,26 +457,72 @@
         box-sizing: border-box !important;
       }
 
-      /* Schedule Cards Grid: 1 Column on Mobile so nothing is ever truncated or cut off */
+      /* Schedule Cards Grid: 2 Columns Side-by-Side on Mobile (Bersebelahan) */
       .schedule-cards-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 14px !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
         width: 100% !important;
         max-width: 380px !important;
         margin-left: auto !important;
         margin-right: auto !important;
         margin-bottom: 16px !important;
+        box-sizing: border-box !important;
       }
       .schedule-box {
         width: 100% !important;
-        padding: 18px 16px !important;
+        min-width: 0 !important;
+        padding: 12px 6px 14px !important;
         box-sizing: border-box !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        border-radius: 14px !important;
+      }
+      .sched-icon-bubble {
+        width: 34px !important;
+        height: 34px !important;
+        margin-bottom: 6px !important;
+      }
+      .sched-icon-bubble svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+      .sched-title {
+        font-size: 13.5px !important;
+        font-weight: 700 !important;
+        line-height: 1.25 !important;
+        margin-bottom: 6px !important;
+        text-align: center !important;
       }
       .sched-time-pill {
-        font-size: 11.5px !important;
-        padding: 4px 12px !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        padding: 3px 6px !important;
+        border-radius: 8px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 6px !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
         white-space: normal !important;
+        text-align: center !important;
+      }
+      .sched-note {
+        font-size: 9.5px !important;
+        line-height: 1.25 !important;
+        text-align: center !important;
+        margin: 0 !important;
+        color: #5c7485 !important;
+      }
+      .schedule-box.reveal-left,
+      .schedule-box.reveal-right {
+        transform: translateY(16px) !important;
+      }
+      .schedule-box.reveal-left.is-visible,
+      .schedule-box.reveal-right.is-visible {
+        transform: translateY(0) !important;
       }
       .venue-location-card {
         width: 100% !important;
@@ -1536,9 +1582,9 @@
 
   <!-- Supabase Cloud Engine & RSVP Sync Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-client.js?v=20261113_16"></script>
+  <script src="js/supabase-client.js?v=20261113_17"></script>
 
   <!-- JavaScript Engine -->
-  <script src="js/app.js?v=20261113_16"></script>
+  <script src="js/app.js?v=20261113_17"></script>
 </body>
 </html>
