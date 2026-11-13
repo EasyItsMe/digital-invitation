@@ -196,17 +196,17 @@ button, a {
    ========================================================================== */
 .fab-music-btn {
   position: fixed;
-  bottom: 76px;
-  right: 18px;
+  bottom: 74px;
+  right: 16px;
   z-index: 998;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1.5px solid rgba(71, 112, 135, 0.22);
-  box-shadow: 0 4px 14px rgba(36, 66, 84, 0.16);
+  box-shadow: 0 4px 16px rgba(36, 66, 84, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,11 +219,26 @@ button, a {
 .fab-music-btn:hover {
   transform: scale(1.08);
   background: #ffffff;
-  box-shadow: 0 6px 18px rgba(36, 66, 84, 0.24);
+  box-shadow: 0 6px 20px rgba(36, 66, 84, 0.24);
 }
 
 .fab-music-btn:active {
   transform: scale(0.94);
+}
+
+.fab-music-btn.is-playing::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(71, 112, 135, 0.45);
+  animation: musicRipple 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes musicRipple {
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
 }
 
 .music-disc {
@@ -241,13 +256,13 @@ button, a {
 }
 
 .music-disc.playing .music-note-icon {
-  animation: spin-vinyl 4s linear infinite;
-  color: var(--accent-gold);
+  animation: music-note-pulse 1.8s ease-in-out infinite alternate;
+  color: var(--primary-blue);
 }
 
-@keyframes spin-vinyl {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@keyframes music-note-pulse {
+  0%   { transform: scale(0.92); }
+  100% { transform: scale(1.08); }
 }
 
 .icon-music-off {
@@ -2175,9 +2190,9 @@ body.invitation-opened .invitation-body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 36px;
-  box-shadow: 0 10px 30px rgba(35, 60, 85, 0.2);
+  box-shadow: 0 10px 30px rgba(35, 60, 85, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.95);
-  padding: 5px 6px;
+  padding: 4px 6px;
   box-sizing: border-box;
   transform: translateY(120%);
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.35s ease;
@@ -2194,11 +2209,13 @@ body.invitation-opened .invitation-body {
 .dock-scrollable {
   display: flex;
   align-items: center;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  gap: 4px;
-  padding: 2px 14px 2px 6px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .dock-scrollable::-webkit-scrollbar {
@@ -2206,38 +2223,52 @@ body.invitation-opened .invitation-body {
 }
 
 .dock-item {
-  flex: 0 0 auto;
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  padding: 6px 11px;
+  padding: 6px 1px;
   text-decoration: none;
   color: #5c7485;
-  border-radius: 20px;
-  font-size: 9.5px;
+  border-radius: 16px;
+  font-size: 8.5px;
   font-weight: 600;
-  transition: all 0.25s ease;
-  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .dock-icon {
   width: 16px;
   height: 16px;
   display: block;
+  margin: 0 auto 2px auto;
 }
 
 .dock-label {
-  font-size: 9px;
+  font-size: 8.5px;
   letter-spacing: -0.2px;
   line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
+  text-align: center;
 }
 
 .dock-item.active {
   background: var(--primary-blue);
   color: #ffffff;
   box-shadow: 0 2px 8px rgba(71, 112, 135, 0.35);
+}
+
+.dock-item.active .dock-icon,
+.dock-item.active .dock-label {
+  color: #ffffff;
+  fill: #ffffff;
 }
 
 /* ==========================================================================
@@ -2477,45 +2508,53 @@ body.invitation-opened .invitation-body {
     left: 8px !important;
     right: 8px !important;
     width: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
     bottom: 12px !important;
-    padding: 5px 6px;
+    padding: 4px 6px !important;
   }
 
   .dock-scrollable {
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    gap: 2px;
-    padding: 2px 8px 2px 4px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
 
   .dock-item {
-    flex: 0 0 auto;
-    padding: 5px 6.5px;
-    font-size: 8.5px;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 5px 1px !important;
+    font-size: 8.5px !important;
+    text-align: center !important;
   }
 
   .dock-icon {
-    width: 15px;
-    height: 15px;
+    width: 15px !important;
+    height: 15px !important;
+    margin: 0 auto 2px auto !important;
   }
 
   .dock-label {
-    font-size: 8px;
-    letter-spacing: -0.2px;
-    line-height: 1.1;
-    white-space: nowrap;
+    font-size: 8px !important;
+    letter-spacing: -0.2px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
   }
 
   .fab-music-btn {
-    bottom: 74px;
-    right: 14px;
-    width: 38px;
-    height: 38px;
+    bottom: 74px !important;
+    right: 14px !important;
+    width: 42px !important;
+    height: 42px !important;
   }
 }
 

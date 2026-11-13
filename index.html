@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=20261113_12">
+  <link rel="stylesheet" href="css/style.css?v=20261113_13">
 
   <!-- Critical Centering, Gateway Lock & Responsive Rules -->
   <style>
@@ -177,7 +177,7 @@
       z-index: 2 !important;
       margin: auto 0 !important;
     }
-    /* Bulletproof Centering for Floating Dock Navbar */
+    /* Bulletproof Centering & Equal Distribution for Floating Dock Navbar */
     .floating-dock-nav {
       position: fixed !important;
       left: 8px !important;
@@ -187,12 +187,116 @@
       margin: 0 auto !important;
       bottom: 12px !important;
       z-index: 999 !important;
+      background: rgba(244, 249, 253, 0.96) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-radius: 36px !important;
+      box-shadow: 0 10px 30px rgba(35, 60, 85, 0.18) !important;
+      border: 1px solid rgba(255, 255, 255, 0.95) !important;
+      padding: 4px 6px !important;
       box-sizing: border-box !important;
     }
     .floating-dock-nav.is-visible {
       transform: translateY(0) !important;
       opacity: 1 !important;
       pointer-events: auto !important;
+    }
+    .dock-scrollable {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      width: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+    .dock-item {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 6px 1px !important;
+      text-decoration: none !important;
+      color: #5c7485 !important;
+      border-radius: 16px !important;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+    }
+    .dock-item .dock-icon {
+      width: 16px !important;
+      height: 16px !important;
+      display: block !important;
+      margin: 0 auto 2px auto !important;
+    }
+    .dock-item .dock-label {
+      font-size: 8.5px !important;
+      font-weight: 600 !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.2px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      display: block !important;
+      text-align: center !important;
+    }
+    .dock-item.active {
+      background: #477087 !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(71, 112, 135, 0.35) !important;
+    }
+    .dock-item.active .dock-icon,
+    .dock-item.active .dock-label {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+    }
+
+    /* Floating Music Button (Luxury Frosted Glass) */
+    .fab-music-btn {
+      position: fixed !important;
+      bottom: 74px !important;
+      right: 16px !important;
+      z-index: 998 !important;
+      width: 42px !important;
+      height: 42px !important;
+      border-radius: 50% !important;
+      background: rgba(255, 255, 255, 0.96) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1.5px solid rgba(71, 112, 135, 0.22) !important;
+      box-shadow: 0 4px 16px rgba(35, 60, 85, 0.16) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+      color: #477087 !important;
+    }
+    .fab-music-btn.is-playing::before {
+      content: '' !important;
+      position: absolute !important;
+      inset: -3px !important;
+      border-radius: 50% !important;
+      border: 1.5px solid rgba(71, 112, 135, 0.45) !important;
+      animation: musicRipple 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite !important;
+      pointer-events: none !important;
+    }
+    @keyframes musicRipple {
+      0%   { transform: scale(0.95); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    .music-disc.playing .music-note-icon {
+      animation: music-note-pulse 1.8s ease-in-out infinite alternate !important;
+      color: #477087 !important;
+    }
+    @keyframes music-note-pulse {
+      0%   { transform: scale(0.92); }
+      100% { transform: scale(1.08); }
     }
     body.invitation-opened .fab-music-btn {
       opacity: 1 !important;
@@ -221,6 +325,11 @@
         right: 0 !important;
         margin: 0 auto !important;
       }
+      .fab-music-btn {
+        left: calc(50% + 240px - 56px) !important;
+        right: auto !important;
+        bottom: 80px !important;
+      }
     }
     @media (max-width: 600px) {
       .page-container,
@@ -238,9 +347,29 @@
         left: 8px !important;
         right: 8px !important;
         width: auto !important;
-        max-width: none !important;
-        margin: 0 !important;
+        max-width: 440px !important;
+        margin: 0 auto !important;
         bottom: 12px !important;
+        padding: 4px 6px !important;
+      }
+      .dock-item {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 5px 1px !important;
+        font-size: 8.5px !important;
+      }
+      .dock-item .dock-icon {
+        width: 15px !important;
+        height: 15px !important;
+      }
+      .dock-item .dock-label {
+        font-size: 8px !important;
+      }
+      .fab-music-btn {
+        bottom: 74px !important;
+        right: 14px !important;
+        width: 42px !important;
+        height: 42px !important;
       }
     }
 
@@ -1249,6 +1378,6 @@
   </div>
 
   <!-- JavaScript Engine -->
-  <script src="js/app.js?v=20261113_12"></script>
+  <script src="js/app.js?v=20261113_13"></script>
 </body>
 </html>

@@ -65,12 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function playAudio() {
     audio.play().then(() => {
       isAudioPlaying = true;
+      if (btnSoundToggle) btnSoundToggle.classList.add('is-playing');
       musicDisc.classList.add('playing');
       musicDisc.style.display = 'flex';
       iconMusicOff.style.display = 'none';
     }).catch(err => {
       console.log('Audio autoplay prevented:', err);
       isAudioPlaying = false;
+      if (btnSoundToggle) btnSoundToggle.classList.remove('is-playing');
       musicDisc.classList.remove('playing');
       musicDisc.style.display = 'none';
       iconMusicOff.style.display = 'block';
@@ -80,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function pauseAudio() {
     audio.pause();
     isAudioPlaying = false;
+    if (btnSoundToggle) btnSoundToggle.classList.remove('is-playing');
     musicDisc.classList.remove('playing');
     musicDisc.style.display = 'none';
     iconMusicOff.style.display = 'block';
@@ -225,16 +228,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    if (!activeId) {
+      if (window.scrollY < 250) {
+        activeId = 'sec-quotes';
+      }
+    }
+
     if (activeId) {
       dockItems.forEach(item => {
         if (item.getAttribute('data-target') === activeId) {
           item.classList.add('active');
-          // Auto scroll dock
-          const dockScroll = item.parentElement;
-          if (dockScroll) {
-            const offset = item.offsetLeft - (dockScroll.clientWidth / 2) + (item.clientWidth / 2);
-            dockScroll.scrollTo({ left: offset, behavior: 'smooth' });
-          }
         } else {
           item.classList.remove('active');
         }
