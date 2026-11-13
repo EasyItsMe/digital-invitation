@@ -1,0 +1,13 @@
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Test captures
+screenshots/
+*.tmp

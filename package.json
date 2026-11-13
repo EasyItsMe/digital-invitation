@@ -1,0 +1,13 @@
+{
+  "name": "blue-butterfly-digital-invitation",
+  "version": "1.0.0",
+  "description": "Digital Wedding Invitation - Blue Butterfly Theme (Tufel & Uswa)",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["wedding-invitation", "digital-invitation", "blue-butterfly"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
+
