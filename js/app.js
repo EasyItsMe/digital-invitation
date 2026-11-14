@@ -849,4 +849,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initFastTypewriter();
   initCelebrationButton();
   renderWishes();
+
+  // Lightweight background keep-alive ping for Supabase (mencegah auto-pause 7 hari)
+  setTimeout(() => {
+    if (window.SupabaseRSVP && typeof window.SupabaseRSVP.ping === 'function') {
+      window.SupabaseRSVP.ping();
+    }
+  }, 2500);
 });

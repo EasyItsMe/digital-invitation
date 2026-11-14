@@ -1,0 +1,20 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Berjalan otomatis setiap 3 hari sekali pukul 04:00 UTC (11:00 WIB)
+    - cron: '0 4 */3 * *'
+  workflow_dispatch: # Memungkinkan tombol 'Run workflow' manual di GitHub Actions
+
+jobs:
+  keep-alive:
+    name: Ping Supabase Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send keep-alive HTTP GET request
+        run: |
+          curl -s -f -X GET "https://qbjiljgbdvzvthtszjhy.supabase.co/rest/v1/rsvp_wishes?select=id&limit=1" \
+            -H "apikey: sb_publishable_YYDgmKmKCQnSljYr4HCFgg_AAtAJQtA" \
+            -H "Authorization: Bearer sb_publishable_YYDgmKmKCQnSljYr4HCFgg_AAtAJQtA" \
+            -H "Content-Type: application/json"
+          echo "Supabase successfully pinged to prevent pause."

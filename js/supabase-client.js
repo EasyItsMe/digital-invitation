@@ -279,6 +279,22 @@
         }
       }
       return null;
+    },
+
+    // 5. Lightweight keep-alive ping (mencegah Supabase free di-pause)
+    ping: async function () {
+      if (this.isConfigured() && supabaseInstance) {
+        try {
+          await supabaseInstance
+            .from(CONFIG.TABLE)
+            .select('id')
+            .limit(1);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+      return false;
     }
   };
 
